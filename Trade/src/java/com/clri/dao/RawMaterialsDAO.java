@@ -26,7 +26,6 @@ public class RawMaterialsDAO {
     public int insertRawMaterials(Connection connection, RawMaterials rawMaterials) {
         int count = 0;
         try {
-            DataBaseConnection dbcon = new DataBaseConnection();
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_RAW_MATERIALS");
             count = run.update(connection, sql, rawMaterials.getArticleCode(),rawMaterials.getCategory(),
