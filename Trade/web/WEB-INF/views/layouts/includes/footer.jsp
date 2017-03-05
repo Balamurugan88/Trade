@@ -10,7 +10,7 @@
     <div class="container cont-foot-pad">
         <div class="row">
             <div class="col-md-6 text-center col-sm-6 col-xs-12">
-                <i class="fa fa-copyright"></i> 2015, <span id="spnCSIR_SLRI">CSIR-CLRI</span>
+                <i class="fa fa-copyright"></i> 2017, <span id="spnCSIR_SLRI">CSIR-CLRI</span>
             </div>
 
             <div class="col-md-6 text-center  col-sm-6  col-xs-12">

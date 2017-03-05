@@ -9,7 +9,7 @@
 <nav id="menu">
 <ul>
 <li><a href="<%=request.getContextPath()%>/category/list">Category</a></li>
-<li><a href="<%=request.getContextPath()%>/customer/list">Cutomer</a></li>
+<li><a href="<%=request.getContextPath()%>/customer/list">Customer</a></li>
 <li><a href="<%=request.getContextPath()%>/raw/list">Raw Materials</a></li>
 </ul>
 </nav>

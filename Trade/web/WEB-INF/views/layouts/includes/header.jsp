@@ -33,7 +33,7 @@
                  <%}%>
                 <a href="../<%=request.getContextPath()%>">
                     <img src="<%=path%>/images/crilogo.png">
-                    <span id="spnLogoText" class="clri-logo-text">CSIR-Central Leather Research Institute</span>
+                    <span id="spnLogoText" class="clri-logo-text">India's Trading Information System for Leather and its Relevant areas</span>
                 </a>
             </div>
                      <% if (request.getSession().getAttribute("user") != null) {%>
