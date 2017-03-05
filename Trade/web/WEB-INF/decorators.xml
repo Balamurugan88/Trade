@@ -20,6 +20,7 @@
      <decorator name="admin" page="adminLayout.jsp">
         <pattern>/category/*</pattern>
         <pattern>/customer/*</pattern>
+         <pattern>/raw/*</pattern>
     </decorator>
 
 </decorators>
