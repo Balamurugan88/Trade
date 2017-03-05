@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="col-sm-12">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <form method="post" action="<%=request.getContextPath()%>/ExcelUpload" enctype="multipart/form-data">
                     <div class="input-group pull-left col-sm-offset-6 col-sm-6">
                         <input type="file" name="file" class="form-control" placeholder="Upload File">
@@ -25,6 +25,8 @@
                     <thead>
                         <tr>
                             <td>Article Code</td>
+                            <td>Category</td>
+                            <td>Sub-Category</td>
                             <td>Price(Rs)</td>
                             <td>Quantity(Kg)</td>
                             <td>Year</td>
@@ -39,10 +41,10 @@
                         <td><c:out value="${raw.quantity}"/></td>
                         <td><c:out value="${raw.year}"/></td>
                         <td>
-                            <a href="<%=request.getContextPath()%>/raw/edit?id=${category.id}">
+                            <a href="<%=request.getContextPath()%>/raw/edit?id=${raw.id}">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </a>
-                            <a href="<%=request.getContextPath()%>/raw/delete?id=${category.id}"
+                            <a href="<%=request.getContextPath()%>/raw/delete?id=${raw.id}"
                                onclick="return confirm('Are you sure you want to delete this item?')";>
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 

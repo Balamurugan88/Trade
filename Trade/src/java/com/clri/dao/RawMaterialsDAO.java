@@ -29,7 +29,8 @@ public class RawMaterialsDAO {
             DataBaseConnection dbcon = new DataBaseConnection();
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_RAW_MATERIALS");
-            count = run.update(connection, sql, rawMaterials.getArticleCode(), rawMaterials.getQuantity(), rawMaterials.getValue(), rawMaterials.getYear());
+            count = run.update(connection, sql, rawMaterials.getArticleCode(),rawMaterials.getCategory(),
+                    rawMaterials.getSubCategory(),rawMaterials.getQuantity(), rawMaterials.getValue(), rawMaterials.getYear());
         } catch (Exception e) {
             e.printStackTrace();
         }
