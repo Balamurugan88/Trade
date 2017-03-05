@@ -37,6 +37,8 @@
                     <c:forEach items="${rawList}" var="raw">
                         <tr>
                             <td><c:out value="${raw.articleCode}"/></td>
+                            <td><c:out value="${raw.category}"/></td>
+                            <td><c:out value="${raw.sub-category}"/></td>
                         <td><c:out value="${raw.value}"/></td>
                         <td><c:out value="${raw.quantity}"/></td>
                         <td><c:out value="${raw.year}"/></td>
