@@ -35,7 +35,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUpload extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String TMP_DIR_PATH = "F:/MyTempFiles";
+    private static final String TMP_DIR_PATH = "F:/visalitempfiles";
     private File tmpDir;
     private static final String DESTINATION_DIR_PATH = "F:/MySavedFiles";
     private File destinationDir;
