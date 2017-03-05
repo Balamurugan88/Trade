@@ -17,12 +17,7 @@
     <body>
         <div class="col-sm-6 left-column">
             <div class="text-center heading">Category</div>
-            <form method="post" action="<%=request.getContextPath()%>/ExcelUpload" enctype="multipart/form-data">
-                <div class="input-group pull-left col-sm-offset-6 col-sm-6">
-                    <input type="file" name="file" class="form-control" placeholder="Upload File">
-                </div>
-                <input type="submit" class="btn btn-primary" value="Submit"/>
-            </form>
+            
             <table id="datatable" class="dataTable display">
                 <thead>
                     <tr>

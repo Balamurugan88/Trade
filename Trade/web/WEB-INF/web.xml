@@ -26,6 +26,10 @@
         <servlet-name>ExcelUpload</servlet-name>
         <servlet-class>com.clri.servlet.ExcelUpload</servlet-class>
     </servlet>
+      <servlet>
+        <servlet-name>RawMaterials</servlet-name>
+        <servlet-class>com.clri.servlet.RawMaterialsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/customer/add</url-pattern>
@@ -50,6 +54,24 @@
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/category/delete</url-pattern>
     </servlet-mapping>
+    <!-- Raw Materials Mapping Start -->
+     <servlet-mapping>
+        <servlet-name>RawMaterials</servlet-name>
+        <url-pattern>/raw/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RawMaterials</servlet-name>
+        <url-pattern>/raw/saveUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RawMaterials</servlet-name>
+        <url-pattern>/raw/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RawMaterials</servlet-name>
+        <url-pattern>/raw/delete</url-pattern>
+    </servlet-mapping>
+    <!-- Raw Materials Mapping End -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginAuthenticate</url-pattern>

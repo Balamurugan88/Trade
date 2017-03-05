@@ -28,6 +28,14 @@ public class CommonConstants {
     public static final String CATEGORY_LIST_JSP = "/WEB-INF/views/category/list.jsp";
     public static final String CUSTOMER_LIST_JSP = "/WEB-INF/views/customer/list.jsp";
     
+    //Raw Materials
+    public static final String RAW_LIST = "/raw/list";
+    public static final String RAW_SAVE_UPDATE = "/raw/saveUpdate";
+    public static final String RAW_EDIT = "/raw/edit";
+    public static final String RAW_UPDATE = "/raw/update";
+    public static final String RAW_DELETE = "/raw/delete";
+    public static final String RAW_LIST_JSP = "/WEB-INF/views/rawmaterials/list.jsp";
+    
     
     
 }

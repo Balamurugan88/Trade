@@ -5,10 +5,17 @@
  */
 package com.clri.servlet;
 
+import com.clri.dao.RawMaterialsDAO;
+import com.clri.dbutils.DBUtils;
+import com.clri.dbutils.DataBaseConnection;
+import com.clri.dto.RawMaterials;
+import com.clri.utils.CommonConstants;
+import com.clri.utils.CustomUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletConfig;
@@ -21,9 +28,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -35,7 +40,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUpload extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String TMP_DIR_PATH = "F:/visalitempfiles";
+    private static final String TMP_DIR_PATH = "F:/MyTempFiles";
     private File tmpDir;
     private static final String DESTINATION_DIR_PATH = "F:/MySavedFiles";
     private File destinationDir;
@@ -66,8 +71,6 @@ public class ExcelUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //PrintWriter to send the JSON response back
-        PrintWriter out = response.getWriter();
-
         //set content type and header attributes
         response.setContentType("text/html");
         response.setHeader("Cache-control", "no-cache, no-store");
@@ -109,12 +112,13 @@ public class ExcelUpload extends HttpServlet {
                             + ", Content type = " + item.getContentType()
                             + ", File Size = " + item.getSize());
                     fullName = item.getName().trim();
-
+                    String modifiedName = FilenameUtils.getBaseName(fullName);
+                    modifiedName+=new Date().getTime()+"."+FilenameUtils.getExtension(fullName);
                     //Write file to the ultimate location.
-                    file = new File(destinationDir, item.getName());
+                    file = new File(destinationDir, modifiedName);
                     item.write(file);
                 }
-
+                CustomUtils.redirect(CommonConstants.RAW_LIST, request, response);
             }
 
             int count = 0;
@@ -133,16 +137,17 @@ public class ExcelUpload extends HttpServlet {
         } catch (Exception ex) {
             log("Error encountered while uploading file", ex);
         }
-
-        out.close();
-
     }
 
     private int processExcelFile(File file) {
 
         int count = 0;
-
+        Connection connection = null;
+        RawMaterialsDAO rawMaterialsDAO = new RawMaterialsDAO();
+        DataBaseConnection dbcon = new DataBaseConnection();
+        RawMaterials rawMaterials = new RawMaterials();
         try {
+            connection = dbcon.openConnection();
             // Creating Input Stream 
             FileInputStream myInput = new FileInputStream(file);
 
@@ -156,46 +161,31 @@ public class ExcelUpload extends HttpServlet {
              * We now need something to iterate through the cells.*
              */
             Iterator<Row> rowIter = mySheet.rowIterator();
+            int rowCount = 0;
             while (rowIter.hasNext()) {
-
-                XSSFRow myRow = (XSSFRow) rowIter.next();
-                String cell = myRow.getCell(1).getRawValue();
-                Iterator<Cell> cellIter = myRow.cellIterator();
-                while (cellIter.hasNext()) {
-
-                    XSSFCell myCell = (XSSFCell) cellIter.next();
-                    //get cell index
-                    System.out.println("Cell column index: " + myCell.getColumnIndex());
-                    //get cell type
-                    System.out.println("Cell Type: " + myCell.getCellType());
-
-                    //get cell value
-                    switch (myCell.getCellType()) {
-                        case XSSFCell.CELL_TYPE_NUMERIC:
-                            System.out.println("Cell Value: " + myCell.getNumericCellValue());
-                            break;
-                        case XSSFCell.CELL_TYPE_STRING:
-                            System.out.println("Cell Value: " + myCell.getStringCellValue());
-                            break;
-                        default:
-                            System.out.println("Cell Value: " + myCell.getRawValue());
-                            break;
-                    }
-                    System.out.println("---");
-
-                    if (myCell.getColumnIndex() == 0
-                            && !myCell.getStringCellValue().trim().equals("")
-                            && !myCell.getStringCellValue().trim().equals("Item Number")) {
-                        count++;
-                    }
-
+                 XSSFRow myRow = (XSSFRow) rowIter.next();
+                if(rowCount != 0){
+                String articleCode = myRow.getCell(0).getStringCellValue();
+                String category = myRow.getCell(1).getStringCellValue();
+                String subCategory = myRow.getCell(2).getStringCellValue();
+                double quantity = myRow.getCell(3).getNumericCellValue();
+                double value =  myRow.getCell(4).getNumericCellValue();
+                String year = myRow.getCell(5).getStringCellValue();
+                rawMaterials.setCategory(category);
+                rawMaterials.setQuantity(quantity);
+                rawMaterials.setValue(value);
+                rawMaterials.setYear(year);
+                rawMaterials.setSubCategory(subCategory);
+                rawMaterials.setArticleCode(articleCode);
+                count+=rawMaterialsDAO.insertRawMaterials(connection, rawMaterials);
                 }
-
+                rowCount++;
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            DBUtils.closeConnection(connection);
         }
-
         return count;
 
     }
