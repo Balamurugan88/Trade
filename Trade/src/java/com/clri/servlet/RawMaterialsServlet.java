@@ -52,10 +52,10 @@ public class RawMaterialsServlet extends HttpServlet {
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
-        } else if (path.equals(CommonConstants.CATEGORY_DELETE)) {
+        } else if (path.equals(CommonConstants.RAW_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
             rawMaterialsDAO.deleteCategory(id);
-        } else if (path.equals(CommonConstants.CATEGORY_EDIT)) {
+        } else if (path.equals(CommonConstants.RAW_EDIT)) {
             int id = Integer.parseInt(request.getParameter("id"));
             rawMaterials = rawMaterialsDAO.getById(id);
             request.setAttribute("rawMaterials", rawMaterials);

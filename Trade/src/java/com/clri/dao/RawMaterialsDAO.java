@@ -85,7 +85,7 @@ public class RawMaterialsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_CATEGORY");
+            String sql = Queries.getQuery("DELETE_RAW");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (Exception e) {
