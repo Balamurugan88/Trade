@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
             if (user.getUserType() == 1) {
                 url = CommonConstants.CATEGORY_LIST;
             } else {
-                url = CommonConstants.CUSTOMER_LIST;
+                url = CommonConstants.REPORTS_LIST;
             }
             CustomUtils.redirect(url, request, response);
         }

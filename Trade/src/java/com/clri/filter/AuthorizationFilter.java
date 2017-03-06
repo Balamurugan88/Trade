@@ -24,15 +24,14 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 
 public class AuthorizationFilter implements Filter {
-    
-    public static final String ADMIN="ADMIN";
-    public static final String CUSTOMER ="CUSTOMER";
+
+    public static final String ADMIN = "ADMIN";
+    public static final String CUSTOMER = "CUSTOMER";
 
     public void init(FilterConfig filterConfig) throws ServletException {
         String roles = filterConfig.getInitParameter("roles");
         String excludeUrl = filterConfig.getInitParameter("excludePatterns");
         excludePatterns = excludeUrl.split(",");
-        System.out.println("=== The roles are === " + roles);
         if (roles == null || "".equals(roles)) {
             roleNames = new String[0];
         } else {
@@ -53,42 +52,37 @@ public class AuthorizationFilter implements Filter {
 
         HttpSession session = req.getSession();
         Users user = (Users) session.getAttribute("user");
-        
+
         ActionErrors errors = new ActionErrors();
         String url = req.getServletPath();
-        boolean flag=false;
-//        System.out.println("==== The exclud url pattern is " + excludePatterns);
-//        System.out.println("==== The  url  is " + url);
+        boolean flag = false;
 
         if (CustomUtils.isStringInArray(url, excludePatterns, false)) {
-            flag=true;
-           // chain.doFilter(request, response);
+            flag = true;
             if (url.equals("/LoginAuthenticate")) {
-               // res.sendRedirect("customer/list");
             } else if (url.equals("/logout")) {
-                 session.invalidate();
-               // res.sendRedirect("/index.jsp");
+                session.invalidate();
             } else {
                 req.getRequestDispatcher(url).forward(req, res);
             }
 
         }
-       if (user != null) {
+        if (user != null) {
             boolean hasRole = false;
             for (int i = 0; i < roleNames.length; i++) {
-                   if(ADMIN.equalsIgnoreCase(user.getUserRole().toLowerCase()) ||
-                           CUSTOMER.equalsIgnoreCase(user.getUserRole().toLowerCase())){
-                      hasRole=true;
-                      break;  
-                   }
-                   
+                if (ADMIN.equalsIgnoreCase(user.getUserRole().toLowerCase())
+                        || CUSTOMER.equalsIgnoreCase(user.getUserRole().toLowerCase())) {
+                    hasRole = true;
+                    break;
+                }
+
             }
             if (!hasRole) {
                 errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
                         "error.authorization.required"));
             }
         }
-        if (errors.isEmpty( )) {
+        if (errors.isEmpty()) {
             chain.doFilter(request, response);
         } else {
             req.setAttribute(Globals.ERROR_KEY, errors);

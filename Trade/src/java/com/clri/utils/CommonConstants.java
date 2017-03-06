@@ -21,7 +21,6 @@ public class CommonConstants {
     public static final String CATEGORY_EDIT = "/category/edit";
     public static final String CATEGORY_UPDATE = "/category/update";
     public static final String CATEGORY_DELETE = "/category/delete";
-    public static final String REPORTS_LIST = "/reports/list";
     public static final String CUSTOMER_LIST = "/customer/list";
     public static final String HOME_PAGE = "/index.jsp";
     
@@ -36,6 +35,9 @@ public class CommonConstants {
     public static final String RAW_DELETE = "/raw/delete";
     public static final String RAW_LIST_JSP = "/WEB-INF/views/rawmaterials/list.jsp";
     
+    //Reports Page
+    public static final String REPORTS_LIST = "/reports/list";
+    public static final String REPORTS_LIST_JSP = "/WEB-INF/views/reports/list.jsp";
     
     
 }
