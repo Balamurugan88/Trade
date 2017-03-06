@@ -51,12 +51,12 @@ public class CategoryDAO {
             connecton = dbcon.openConnection();
              QueryRunner run = new QueryRunner();
             String sql = "";
-            if(category.getId() == 0){
+            if(category.getArticleCode()== 0){
                 sql = Queries.getQuery("INSERT_CATEGORY");
-                count = run.update(connecton, sql, category.getName(), category.getDescription());
+                count = run.update(connecton, sql, category.getName());
             }else{
                 sql = Queries.getQuery("UPDATE_CATEGORY");
-                count = run.update(connecton, sql,category.getName(), category.getDescription(),category.getId());
+                count = run.update(connecton, sql,category.getName(),category.getArticleCode());
             }
            
             

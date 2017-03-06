@@ -41,25 +41,30 @@ public class CategoryServlet extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String path = request.getServletPath();
         HttpSession session = request.getSession();
+        int count =0;
         //if(path.equals(CommonConstants.CATEGORY_LIST)){
         CategoryDAO categoryDAO = new CategoryDAO();
         Category category = new Category();
         //}
         if (path.equals(CommonConstants.CATEGORY_SAVE_UPDATE)) {
-            category.setId(CustomUtils.getId(request,"categoryId"));
+            category.setArticleCode(CustomUtils.getId(request,"articleCode"));
             category.setName(request.getParameter("name"));
-            category.setDescription(request.getParameter("description"));
-            int count = categoryDAO.addUpdateCategory(category);
+            count = categoryDAO.addUpdateCategory(category);
             if (count == 0) {
                 CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
         } else if (path.equals(CommonConstants.CATEGORY_DELETE)) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            categoryDAO.deleteCategory(id);
+            int id = Integer.parseInt(request.getParameter("articleCode"));
+            count = categoryDAO.deleteCategory(id);
+            if (count == 0) {
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CATEGORY_DELETE_ERROR"), request);
+            } else {
+                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_DELETE_SUCCESS"), request);
+            }
         } else if (path.equals(CommonConstants.CATEGORY_EDIT)) {
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter("articleCode"));
             category = categoryDAO.getById(id);
             request.setAttribute("category", category);
         }

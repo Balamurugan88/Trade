@@ -10,24 +10,15 @@ package com.clri.dto;
  * @author Balamurugan
  */
 public class Category {
-    
-//    public Category(String name,String description){
-//        this.description = description;
-//        this.name = name;
-//    }
 
-    @Override
-    public String toString() {
-        return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + '}';
+    public int getArticleCode() {
+        return articleCode;
     }
 
-    public int getId() {
-        return id;
+    public void setArticleCode(int articleCode) {
+        this.articleCode = articleCode;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -37,17 +28,10 @@ public class Category {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
     
-    public int id;
+    
+    public int articleCode;
     public String name;
-    public String description;
     
     
 }

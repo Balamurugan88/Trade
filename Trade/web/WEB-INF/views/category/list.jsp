@@ -22,7 +22,6 @@
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Description</td>
                         <td>Action</td>
                     </tr>
                 </thead>
@@ -30,12 +29,11 @@
                     <c:forEach items="${categoryList}" var="category">
                         <tr>
                             <td><c:out value="${category.name}"/></td>
-                            <td><c:out value="${category.description}"/></td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/category/edit?id=${category.id}">
+                                <a href="<%=request.getContextPath()%>/category/edit?articleCode=${category.articleCode}">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="<%=request.getContextPath()%>/category/delete?id=${category.id}"
+                                <a href="<%=request.getContextPath()%>/category/delete?articleCode=${category.articleCode}"
                                    onclick="return confirm('Are you sure you want to delete this item?')";>
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 
