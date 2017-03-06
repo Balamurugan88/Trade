@@ -88,6 +88,52 @@
         <servlet-name>ExcelUpload</servlet-name>
         <url-pattern>/ExcelUpload</url-pattern>
     </servlet-mapping>
+    <!-- Filter Starting -->
+    <filter>
+        <filter-name>adminAuthFilter</filter-name>
+        <filter-class>
+         com.clri.filter.AuthorizationFilter
+    </filter-class>
+        <init-param>
+            <param-name>roles</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>onFailure</param-name>
+            <param-value>/failure.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>excludePatterns</param-name>
+            <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>cutomerAuthFilter</filter-name>
+        <filter-class>
+       com.clri.filter.AuthorizationFilter
+    </filter-class>
+        <init-param>
+            <param-name>roles</param-name>
+            <param-value>customer</param-value>
+        </init-param>
+        <init-param>
+            <param-name>onFailure</param-name>
+            <param-value>/failure.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>excludePatterns</param-name>
+            <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>adminAuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name> cutomerAuthFilter </filter-name>
+        <url-pattern>/reports/*</url-pattern>
+    </filter-mapping>
+    <!-- Filter Ending -->
     <session-config>
         <session-timeout>
             30

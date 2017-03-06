@@ -11,6 +11,14 @@ package com.clri.dto;
  */
 public class Users {
 
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
     public String toString() {
         return "Users{" + "id=" + id + ", userName=" + userName + ", dob=" + dob + ", userType=" + userType + ", firstName=" + firstName + ", lastName=" + lastName + '}';
@@ -70,5 +78,6 @@ public class Users {
     public int userType;
     public String firstName;
     public String lastName;
+    public String userRole;
     
 }

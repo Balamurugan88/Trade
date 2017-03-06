@@ -45,5 +45,38 @@ public class CustomUtils {
          }
          return id;
      }
+     
+     public static boolean isStringInArray(String item, String[] array, boolean ignoreCase) {
+        if (array == null) return false;
+
+        boolean result = false;
+
+        int size = array.length;
+        for (int i = 0; i < size; i++) {
+            String tmp = array[i];
+            if (tmp != null) {
+                if (ignoreCase) {
+                    if (tmp.equalsIgnoreCase(item)) {
+                        result = true;
+                        break;
+                    }
+                }
+                else {
+                    if (tmp.equals(item)) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            else {
+                if (item == null) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
 
 }
