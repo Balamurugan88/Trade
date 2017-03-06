@@ -27,7 +27,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
 
         <div  class="col-sm-12 text-center">
-            <div id="logoc" class="clri-logo col-sm-6 pull-left">
+            <div id="logoc" class="clri-logo col-sm-8 pull-left">
                  <% if (isLoggedIn) {%>
                  <a class="menu" href="#menu"></a>
                  <%}%>
