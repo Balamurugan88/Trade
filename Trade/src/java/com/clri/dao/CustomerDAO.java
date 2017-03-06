@@ -56,7 +56,7 @@ public class CustomerDAO {
                 count = run.update(connecton, sql, customer.getName(), customer.getDob(),customer.getEmail());
             }else{
                 sql = Queries.getQuery("UPDATE_CUSTOMER");
-                count = run.update(connecton, sql,customer.getName(), customer.getDob(),customer.getId(),customer.getEmail());
+                count = run.update(connecton, sql,customer.getName(), customer.getDob(),customer.getEmail(),customer.getId());
             }
 
 

@@ -34,14 +34,24 @@
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>com.clri.servlet.ReportServlet</servlet-class>
     </servlet>
+    <!-- Customer Servlet Start -->
+     <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/admin/customer/saveUpdate</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/admin/customer/add</url-pattern>
+        <url-pattern>/admin/customer/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/admin/customer/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/admin/customer/list</url-pattern>
     </servlet-mapping>
+    <!-- Customer Servlet End -->
     <!-- category Start -->
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>

@@ -51,7 +51,7 @@ public class CategoryServlet extends HttpServlet {
             category.setName(request.getParameter("name"));
             count = categoryDAO.addUpdateCategory(category);
             if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_ERROR"), request);
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
@@ -59,7 +59,7 @@ public class CategoryServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("articleCode"));
             count = categoryDAO.deleteCategory(id);
             if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CATEGORY_DELETE_ERROR"), request);
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_DELETE_SUCCESS"), request);
             }

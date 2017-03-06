@@ -7,12 +7,12 @@
 <form  id="addForm" name="addForm" method="post" action="<%=request.getContextPath()%>/admin/category/saveUpdate">
     <input type="hidden" name="articleCode" value="${category.articleCode}"/>
     <div class="form-group col-sm-8">
-        <label for="name">Category</label>
+        <label for="name">Category*</label>
         <input value="${category.name}" type="text" class="form-control" id="name" name="name" required maxlength="20">
     </div>
     <div style="clear:both;"></div>
     <div class="col-sm-2">
-        <input type="submit" class="btn btn-default" value="Submit"/>
+        <input type="submit" class="btn btn-default btn-primary" value="Submit"/>
     </div>
 </form>
 <script type="text/javascript">

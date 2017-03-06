@@ -2,10 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.clri.servlet;
-
-
 
 import com.clri.dao.CustomerDAO;
 import com.clri.dto.Customer;
@@ -28,6 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author CDURAI
  */
 public class CustomerServlet extends HttpServlet {
+
     private Object customerList;
 
     /**
@@ -42,25 +40,30 @@ public class CustomerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String path = request.getServletPath();
-        HttpSession session = request.getSession();
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = new Customer();
+        int count = 0;
         //}
-        if (path.equals(CommonConstants.CATEGORY_SAVE_UPDATE)) {
-            customer.setId(CustomUtils.getId(request,"customerId"));
+        if (path.equals(CommonConstants.CUSTOMER_SAVE_UPDATE)) {
+            customer.setId(CustomUtils.getId(request, "id"));
             customer.setName(request.getParameter("name"));
-            customer.setDob(request.getParameter("Dob"));
-             customer.setEmail(request.getParameter("Email"));
-            int count = customerDAO.addUpdateCustomer(customer);
+            customer.setDob(request.getParameter("dob"));
+            customer.setEmail(request.getParameter("email"));
+            count = customerDAO.addUpdateCustomer(customer);
             if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CUSTOMER_SAVE_ERROR"), request);
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CUSTOMER_SAVE_SUCCESS"), request);
             }
         } else if (path.equals(CommonConstants.CUSTOMER_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            customerDAO.deleteCustomer(id);
-        } else if (path.equals(CommonConstants.Customer_EDIT)) {
+            count = customerDAO.deleteCustomer(id);
+            if (count == 0) {
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
+            } else {
+                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CUSTOMER_DELETE_SUCCESS"), request);
+            }
+        } else if (path.equals(CommonConstants.CUSTOMER_EDIT)) {
             int id = Integer.parseInt(request.getParameter("id"));
             customer = customerDAO.getById(id);
             request.setAttribute("customer", customer);

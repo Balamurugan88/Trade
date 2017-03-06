@@ -15,3 +15,4 @@
 <script type="text/javascript" src="<%=path%>/js/datatables.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.mmenu.all.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap.datepicker.js"></script>

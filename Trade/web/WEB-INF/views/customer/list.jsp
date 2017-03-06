@@ -34,10 +34,10 @@
                             <td><c:out value="${customer.dob}"/></td>
                             <td><c:out value="${customer.email}"/></td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/customer/edit?id=${customer.id}">
+                                <a href="<%=request.getContextPath()%>/admin/customer/edit?id=${customer.id}">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="<%=request.getContextPath()%>/customer/delete?id=${customer.id}"
+                                <a href="<%=request.getContextPath()%>/admin/customer/delete?id=${customer.id}"
                                    onclick="return confirm('Are you sure you want to delete this item?')";>
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 
