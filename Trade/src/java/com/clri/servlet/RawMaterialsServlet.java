@@ -39,22 +39,27 @@ public class RawMaterialsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          String path = request.getServletPath();
-        HttpSession session = request.getSession();
+         int count =0;
         RawMaterialsDAO rawMaterialsDAO = new RawMaterialsDAO();
         RawMaterials rawMaterials = new RawMaterials();
         if (path.equals(CommonConstants.RAW_SAVE_UPDATE)) {
             rawMaterials.setId(CustomUtils.getId(request,"rawId"));
             rawMaterials.setArticleCode(request.getParameter("articleCode"));
             rawMaterials.setQuantity(Double.parseDouble(request.getParameter("quantity")));
-            int count = rawMaterialsDAO.addUpdateRaw(rawMaterials);
+            count = rawMaterialsDAO.addUpdateRaw(rawMaterials);
             if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_ERROR"), request);
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
         } else if (path.equals(CommonConstants.RAW_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            rawMaterialsDAO.deleteCategory(id);
+            count = rawMaterialsDAO.deleteCategory(id);
+            if (count == 0) {
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
+            } else {
+                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_SUCCESS"), request);
+            }
         } else if (path.equals(CommonConstants.RAW_EDIT)) {
             int id = Integer.parseInt(request.getParameter("id"));
             rawMaterials = rawMaterialsDAO.getById(id);
