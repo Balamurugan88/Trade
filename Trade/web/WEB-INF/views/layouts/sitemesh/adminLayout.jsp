@@ -33,11 +33,32 @@
             </div>
         </div>
     </body>
-            <script type="text/javascript">
-             $(document).ready(function () {
-                $('#datatable').DataTable();
-                 $('nav#menu').mmenu();
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+            $('nav#menu').mmenu({
+                extensions: ['effect-slide-menu', 'shadow-page', 'shadow-panels'],
+                keyboardNavigation: true,
+                screenReader: true,
+                counters: true,
+                navbar: {
+                    title: 'Advanced menu'
+                },
+                navbars: [
+                    {
+                        position: 'top',
+                        content: ['searchfield']
+                    }, {
+                        position: 'top',
+                        content: [
+                            'prev',
+                            'title',
+                            'close'
+                        ]
+                    }
+                ]
             });
-            </script>
-            
+        });
+    </script>
+
 </html>
