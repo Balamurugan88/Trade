@@ -30,10 +30,10 @@
                         <tr>
                             <td><c:out value="${category.name}"/></td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/category/edit?articleCode=${category.articleCode}">
+                                <a href="<%=request.getContextPath()%>/admin/category/edit?articleCode=${category.articleCode}">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="<%=request.getContextPath()%>/category/delete?articleCode=${category.articleCode}"
+                                <a href="<%=request.getContextPath()%>/admin/category/delete?articleCode=${category.articleCode}"
                                    onclick="return confirm('Are you sure you want to delete this item?')";>
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 

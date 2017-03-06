@@ -24,19 +24,19 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 
 public class AuthorizationFilter implements Filter {
-
-    public static final String ADMIN = "ADMIN";
-    public static final String CUSTOMER = "CUSTOMER";
-
+    private String[] roleNames;
+    private String onFailure;
+    private String[] excludePatterns;
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String roles = filterConfig.getInitParameter("roles");
+        System.out.println("The roles are = "+roles);
         String excludeUrl = filterConfig.getInitParameter("excludePatterns");
         excludePatterns = excludeUrl.split(",");
         if (roles == null || "".equals(roles)) {
             roleNames = new String[0];
         } else {
             roles.trim();
-            // use the new split method of JDK 1.4
             roleNames = roles.split("\\s*,\\s*");
         }
         onFailure = filterConfig.getInitParameter("onFailure");
@@ -69,13 +69,11 @@ public class AuthorizationFilter implements Filter {
         }
         if (user != null) {
             boolean hasRole = false;
-            for (int i = 0; i < roleNames.length; i++) {
-                if (ADMIN.equalsIgnoreCase(user.getUserRole().toLowerCase())
-                        || CUSTOMER.equalsIgnoreCase(user.getUserRole().toLowerCase())) {
+            for (String roleName : roleNames) {
+                if (roleName.equalsIgnoreCase(user.getUserRole().toLowerCase())) {
                     hasRole = true;
                     break;
                 }
-
             }
             if (!hasRole) {
                 errors.add(ActionErrors.GLOBAL_MESSAGE, new ActionMessage(
@@ -83,7 +81,11 @@ public class AuthorizationFilter implements Filter {
             }
         }
         if (errors.isEmpty()) {
+            if(user == null && !url.equals("/LoginAuthenticate")){
+              //req.getRequestDispatcher(CommonConstants.HOME_PAGE).forward(req, res);   
+            }else{
             chain.doFilter(request, response);
+            }
         } else {
             req.setAttribute(Globals.ERROR_KEY, errors);
             req.getRequestDispatcher(onFailure).forward(req, res);
@@ -92,7 +94,5 @@ public class AuthorizationFilter implements Filter {
 
     public void destroy() {
     }
-    private String[] roleNames;
-    private String onFailure;
-    private String[] excludePatterns;
+    
 }

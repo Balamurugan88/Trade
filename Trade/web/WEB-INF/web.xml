@@ -26,11 +26,11 @@
         <servlet-name>ExcelUpload</servlet-name>
         <servlet-class>com.clri.servlet.ExcelUpload</servlet-class>
     </servlet>
-      <servlet>
+    <servlet>
         <servlet-name>RawMaterials</servlet-name>
         <servlet-class>com.clri.servlet.RawMaterialsServlet</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>com.clri.servlet.ReportServlet</servlet-class>
     </servlet>
@@ -42,38 +42,40 @@
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/customer/list</url-pattern>
     </servlet-mapping>
+    <!-- category Start -->
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/category/list</url-pattern>
+        <url-pattern>/admin/category/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/category/saveUpdate</url-pattern>
+        <url-pattern>/admin/category/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/category/edit</url-pattern>
+        <url-pattern>/admin/category/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/category/delete</url-pattern>
+        <url-pattern>/admin/category/delete</url-pattern>
     </servlet-mapping>
+    <!-- Category End -->
     <!-- Raw Materials Mapping Start -->
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/raw/list</url-pattern>
+        <url-pattern>/admin/raw/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/raw/saveUpdate</url-pattern>
+        <url-pattern>/admin/raw/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/raw/edit</url-pattern>
+        <url-pattern>/admin/raw/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/raw/delete</url-pattern>
+        <url-pattern>/admin/raw/delete</url-pattern>
     </servlet-mapping>
     <!-- Raw Materials Mapping End -->
     
@@ -98,14 +100,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExcelUpload</servlet-name>
-        <url-pattern>/ExcelUpload</url-pattern>
+        <url-pattern>/admin/ExcelUpload</url-pattern>
     </servlet-mapping>
     <!-- Filter Starting -->
     <filter>
         <filter-name>adminAuthFilter</filter-name>
         <filter-class>
-         com.clri.filter.AuthorizationFilter
-    </filter-class>
+            com.clri.filter.AuthorizationFilter
+        </filter-class>
         <init-param>
             <param-name>roles</param-name>
             <param-value>admin</param-value>
@@ -116,17 +118,17 @@
         </init-param>
         <init-param>
             <param-name>excludePatterns</param-name>
-            <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp</param-value>
+            <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp,reports/list</param-value>
         </init-param>
     </filter>
     <filter>
         <filter-name>cutomerAuthFilter</filter-name>
         <filter-class>
-       com.clri.filter.AuthorizationFilter
-    </filter-class>
+            com.clri.filter.AuthorizationFilter
+        </filter-class>
         <init-param>
             <param-name>roles</param-name>
-            <param-value>customer</param-value>
+            <param-value>admin,customer</param-value>
         </init-param>
         <init-param>
             <param-name>onFailure</param-name>
@@ -137,14 +139,17 @@
             <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp</param-value>
         </init-param>
     </filter>
-    <filter-mapping>
-        <filter-name>adminAuthFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
+     <filter-mapping>
         <filter-name> cutomerAuthFilter </filter-name>
         <url-pattern>/reports/*</url-pattern>
     </filter-mapping>
+     <filter-mapping>
+        <filter-name>adminAuthFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    
+   
+   
     <!-- Filter Ending -->
     <session-config>
         <session-timeout>

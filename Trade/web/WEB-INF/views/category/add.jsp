@@ -4,7 +4,7 @@
     Author     : VISALI V
 --%>
 <div class="text-left heading col-sm-12">Add Category</div>
-<form  id="addForm" name="addForm" method="post" action="<%=request.getContextPath()%>/category/saveUpdate">
+<form  id="addForm" name="addForm" method="post" action="<%=request.getContextPath()%>/admin/category/saveUpdate">
     <input type="hidden" name="articleCode" value="${category.articleCode}"/>
     <div class="form-group col-sm-8">
         <label for="name">Category</label>

@@ -8,9 +8,9 @@
 <!DOCTYPE html>
 <nav id="menu">
 <ul>
-<li><a href="<%=request.getContextPath()%>/category/list">Category</a></li>
-<li><a href="<%=request.getContextPath()%>/customer/list">Customer</a></li>
-<li><a href="<%=request.getContextPath()%>/raw/list">Raw Materials</a></li>
+<li><a href="<%=request.getContextPath()%>/admin/category/list">Category</a></li>
+<li><a href="<%=request.getContextPath()%>/admin/customer/list">Customer</a></li>
+<li><a href="<%=request.getContextPath()%>/admin/raw/list">Raw Materials</a></li>
 </ul>
 </nav>
 

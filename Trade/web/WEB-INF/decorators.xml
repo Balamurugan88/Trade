@@ -14,13 +14,12 @@
     </decorator>
     
     <decorator name="customer" page="customerLayout.jsp">
-        <pattern>/customer/*</pattern>
+        <pattern>/report/*</pattern>
     </decorator>
     
      <decorator name="admin" page="adminLayout.jsp">
-        <pattern>/category/*</pattern>
-        <pattern>/customer/*</pattern>
-         <pattern>/raw/*</pattern>
+        <pattern>/admin/*</pattern>
+        <pattern>/reports/*</pattern>
     </decorator>
 
 </decorators>
