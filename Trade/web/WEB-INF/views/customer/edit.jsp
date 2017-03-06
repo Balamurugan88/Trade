@@ -55,11 +55,7 @@
                      }else{
                          homeSel="selected";
                      }%>
-                    <select name="type">
-
-                        <option <%=businessSel%> value="1">Business</option>
-                        <option <%=homeSel%> value="2">Home</option>
-                    </select>
+                   
                 </td>
             </tr>
 

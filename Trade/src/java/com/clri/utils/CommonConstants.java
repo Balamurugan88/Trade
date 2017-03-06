@@ -38,6 +38,8 @@ public class CommonConstants {
     //Reports Page
     public static final String REPORTS_LIST = "/reports/list";
     public static final String REPORTS_LIST_JSP = "/WEB-INF/views/reports/list.jsp";
+    public static Object CUSTOMER_DELETE;
+    public static Object Customer_EDIT;
     
     
 }

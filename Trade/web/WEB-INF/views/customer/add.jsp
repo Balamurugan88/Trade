@@ -4,50 +4,29 @@
     Author     : VISALI V
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<div class="text-left heading col-sm-12">Add Customer</div>
+<form  id="addForm" name="addForm" method="post" action="<%=request.getContextPath()%>/customer/saveUpdate">
+    <input type="hidden" name="customerId" value="${customer.id}"/>
+    <div class="form-group col-sm-8">
+        <label for="name">Customer</label>
+        <input value="${customer.name}" type="text" class="form-control" id="name" name="name" required maxlength="20">
+    </div>
+    <div class="form-group col-sm-8">
+        <label for="desc">Dob</label>
+        <input value="${customer.dob}" type="text" class="form-control" id="desc" name="dob" required maxlength="20">
+    </div>
+    <div class="form-group col-sm-8">
+        <label for="desc">Email</label>
+        <input value="${customer.email}" type="text" class="form-control" id="desc" name="email" required maxlength="20">
+    </div>
+    <div style="clear:both;"></div>
+    <div class="col-sm-2">
+        <input type="submit" class="btn btn-default" value="Submit"/>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addForm").validate();
+    });
+</script>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <%@include file="/include.jsp" %>
-    </head>
-    <body>
-           <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" width="100%"/>
-        <%--<%@include file="/header.jsp" %><br/>--%>
-        <form action="<%=request.getContextPath()%>/customer/Insert" method="post">
-            <table>
-                 <caption><b>Sign Up</b></caption>
-                <tr>
-                    <td> User Name:</td>
-                    <td><input type="text" value="" name="userName"></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" value="" name="password"></td>
-                </tr>
-
-                <tr>
-                    <td>DOB:</td>
-                    <td> <input type="text" value="" name="dob" class="datepicker"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td> <input type="text" value="" name="email"></td>
-                </tr>
-
-                <tr><td>
-                    <input type="hidden" name="status" value="0"/>
-                    </td></tr>
-            </table>
-
-
-            <input type="reset" value="Reset">
-            <input type="submit" value="Save">
-        </form>
-
-             <%@include file="/footer.jsp" %><br/>
-    </body>
-</html>
