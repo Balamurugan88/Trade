@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -90,6 +91,7 @@ public class ExcelUpload extends HttpServlet {
         String fileName = null;
         String fullName = null;
         File file = null;
+        HttpSession session = request.getSession();
 
         try {
 
@@ -101,16 +103,12 @@ public class ExcelUpload extends HttpServlet {
 
                 //Handle Form Fields
                 if (item.isFormField()) {
-                    System.out.println("Field Name = " + item.getFieldName() + ", Value = " + item.getString());
                     if (item.getFieldName().trim().equalsIgnoreCase("filename")) {
                         fileName = item.getString().trim();
                     }
                 } //Handle Uploaded files.
                 else {
-                    System.out.println("Field Name = " + item.getFieldName()
-                            + ", File Name = " + item.getName()
-                            + ", Content type = " + item.getContentType()
-                            + ", File Size = " + item.getSize());
+                   
                     fullName = item.getName().trim();
                     String modifiedName = FilenameUtils.getBaseName(fullName);
                     modifiedName+=new Date().getTime()+"."+FilenameUtils.getExtension(fullName);
@@ -118,19 +116,22 @@ public class ExcelUpload extends HttpServlet {
                     file = new File(destinationDir, modifiedName);
                     item.write(file);
                 }
-                CustomUtils.redirect(CommonConstants.RAW_LIST, request, response);
+                
             }
 
             int count = 0;
             String extension = FilenameUtils.getExtension(fullName);
             if (extension.trim().equalsIgnoreCase("xlsx")) {
                 count = processExcelFile(file);
+                session.setAttribute("uploadCount", count);
+                
             } else if (extension.trim().equalsIgnoreCase("xls")) {
                 //process your binary excel file
             }
             if (extension.trim().equalsIgnoreCase("csv")) {
                 //process your CSV file
             }
+            CustomUtils.redirect(CommonConstants.RAW_LIST, request, response);
 
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);

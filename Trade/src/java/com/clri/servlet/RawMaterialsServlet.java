@@ -42,6 +42,12 @@ public class RawMaterialsServlet extends HttpServlet {
          int count =0;
         RawMaterialsDAO rawMaterialsDAO = new RawMaterialsDAO();
         RawMaterials rawMaterials = new RawMaterials();
+        HttpSession session = request.getSession();
+        if(session.getAttribute("uploadCount") != null){
+            String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
+            CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
+            session.setAttribute("uploadCount", null);
+        }
         if (path.equals(CommonConstants.RAW_SAVE_UPDATE)) {
             rawMaterials.setId(CustomUtils.getId(request,"rawId"));
             rawMaterials.setArticleCode(request.getParameter("articleCode"));
