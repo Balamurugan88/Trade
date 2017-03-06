@@ -36,11 +36,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/customer/add</url-pattern>
+        <url-pattern>/admin/customer/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/customer/list</url-pattern>
+        <url-pattern>/admin/customer/list</url-pattern>
     </servlet-mapping>
     <!-- category Start -->
     <servlet-mapping>
