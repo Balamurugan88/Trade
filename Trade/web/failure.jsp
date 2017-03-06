@@ -11,9 +11,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>401-Unauthorized</title>
     </head>
     <body>
-        <h1>Failure Jsp</h1>
+        <h1>You Don't have access to view this page</h1>
     </body>
 </html>
