@@ -21,7 +21,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", userName=" + userName + ", dob=" + dob + ", userType=" + userType + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+        return "Users{" + "id=" + id + ", userName=" + userName + ", dob=" + dob + ", userType=" + userType  + "}";
     }
 
     public int getUserType() {
@@ -32,21 +32,7 @@ public class Users {
         this.userType = userType;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    
 
     public int getId() {
         return id;
@@ -76,8 +62,6 @@ public class Users {
     public String userName;
     public String dob;
     public int userType;
-    public String firstName;
-    public String lastName;
     public String userRole;
     
 }

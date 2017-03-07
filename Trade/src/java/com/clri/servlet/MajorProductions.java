@@ -5,8 +5,7 @@
  */
 package com.clri.servlet;
 
-import com.clri.dao.RawMaterialsDAO;
-import com.clri.dto.RawMaterials;
+import com.clri.dao.MajorProductionsDAO;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomMessage;
 import com.clri.utils.CustomUtils;
@@ -23,8 +22,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-@WebServlet(name = "RawMaterials", urlPatterns = {"/raw"})
-public class RawMaterialsServlet extends HttpServlet {
+@WebServlet(name = "MajorProductions", urlPatterns = {"/major"})
+public class MajorProductions extends HttpServlet {
+    private Object majorList;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,41 +40,41 @@ public class RawMaterialsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          String path = request.getServletPath();
          int count =0;
-        RawMaterialsDAO rawMaterialsDAO = new RawMaterialsDAO();
-        RawMaterials rawMaterials = new RawMaterials();
+        MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
+        MajorProductions majorProductions = new MajorProductions();
         HttpSession session = request.getSession();
         if(session.getAttribute("uploadCount") != null){
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
             CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
             session.setAttribute("uploadCount", null);
         }
-        if (path.equals(CommonConstants.RAW_SAVE_UPDATE)) {
-            rawMaterials.setId(CustomUtils.getId(request,"rawId"));
-            rawMaterials.setArticleCode(request.getParameter("articleCode"));
-            rawMaterials.setQuantity(Double.parseDouble(request.getParameter("quantity")));
-            count = rawMaterialsDAO.addUpdateRaw(rawMaterials);
-            if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
-            } else {
-                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
-            }
-        } else if (path.equals(CommonConstants.RAW_DELETE)) {
+        if (!path.equals(CommonConstants.MAJOR_SAVE_UPDATE)) if (path.equals(CommonConstants.MAJOR_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            count = rawMaterialsDAO.deleteCategory(id);
+            count = majorProductionsDAO.deleteCategory(id);
             if (count == 0) {
                 CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_SUCCESS"), request);
             }
-        } else if (path.equals(CommonConstants.RAW_EDIT)) {
+        } else if (path.equals(CommonConstants.MAJOR_EDIT)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            rawMaterials = rawMaterialsDAO.getById(id);
-            request.setAttribute("rawMaterials", rawMaterials);
+           
+            request.setAttribute("majorProductions",majorProductions);
+        } else {
+            majorProductions.setId(CustomUtils.getId(request,"majorId"));
+            majorProductions.setArticleCode(request.getParameter("articleCode"));
+            majorProductions.setQuantity(Double.parseDouble(request.getParameter("quantity")));
+            count = majorProductionsDAO.addUpdateRaw(majorProductions);
+            if (count == 0) {
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
+            } else {
+                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
+            }
         }
-        List<RawMaterials> rawList = rawMaterialsDAO.getList();
-        request.setAttribute("rawList", rawList);
-        CustomUtils.setPathName(CommonConstants.RAW_LIST, request);
-        CustomUtils.forward(CommonConstants.RAW_LIST_JSP, request, response);
+        List<com.clri.dto.MajorProductions> majorList = majorProductionsDAO.getList();
+        request.setAttribute("majorList", majorList);
+        CustomUtils.setPathName(CommonConstants.MAJOR_LIST, request);
+        CustomUtils.forward(CommonConstants.MAJOR_LIST_JSP, request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -115,5 +115,17 @@ public class RawMaterialsServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void setId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void setArticleCode(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void setQuantity(double parseDouble) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

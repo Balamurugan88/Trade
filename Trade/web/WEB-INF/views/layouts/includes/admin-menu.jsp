@@ -8,36 +8,54 @@
 <!DOCTYPE html>
 <nav id="menu">
     <ul>
-        <li><a href="<%=request.getContextPath()%>/admin/category/list">Category</a></li>
-        <li><a href="<%=request.getContextPath()%>/admin/customer/list">Customer</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/category/list">Category List</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/customer/list">Customer List </a></li>
         <li>
             <a href="#import">Import</a>
-            <ul>
-                <li><a>Leather</a></li>
-                <li><a href="<%=request.getContextPath()%>/admin/raw/list">Raw Materials</a>
-                    <ul>
+             <li><a>Finished Leather</a>
+                <ul>
+                         
                         <li><a>Major Customers</a></li>
-                        <li><a>Major Productions</a></li>
+                        <li><a>Major Suppliers</a></li>
+                        <li><a>Major Productions with value and year</a></li>
+                    </ul>
+                </li>
+                <li><a>Leather Products</a>
+                
+                    <ul>
+                        
+                        <li><a>Major Customers</a></li>
+                        <li><a>Major Suppliers</a></li>
+                        <li><a> Production</a></li>
                     </ul>
                 </li>
                 
-            </ul>
+            
 
         </li>
-        <li><a href="<%=request.getContextPath()%>/admin/raw/">Export</a>
-            <ul>
-                <li><a>Leather Products</a>
+        <li><a href="<%=request.getContextPath()%>/admin/majorproductions/">Export</a>
+             <li><a>Raw Materials</a>
                     <ul>
-                        <li><a>Major Customer</a></li>
-                        <li><a>Major Supplies</a></li>
-                        <li><a>Major Productions</a></li>
+                        
+                        <li><a href="<%=request.getContextPath()%>/admin/majorcustomers/list">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorproductions/list">Major Productions</a></li>
                     </ul>
                 </li>
+            <ul>
                 <li><a>Finished Leather</a>
+                    <ul>
+                       
+                        <li><a>Major Customers</a></li>
+                        <li><a>Major Suppliers</a></li>
+                        <li><a>Major Productions with value and year</a></li>
+                    </ul>
+                </li>
+                <li><a>Leather Products</a>
                 <ul>
-                        <li><a>Major Customer</a></li>
-                        <li><a>Major Supplies</a></li>
-                        <li><a>Major Productions</a></li>
+                    <li><a>List of Leather Products</a></li>
+                        <li><a>Major Customers</a></li>
+                        <li><a>Major Suppliers</a></li>
+                        <li><a>Major Productions with value and year</a></li>
                     </ul>
                 </li>
             </ul>

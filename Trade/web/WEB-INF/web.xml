@@ -27,9 +27,14 @@
         <servlet-class>com.clri.servlet.ExcelUpload</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RawMaterials</servlet-name>
-        <servlet-class>com.clri.servlet.RawMaterialsServlet</servlet-class>
+        <servlet-name>MajorProductions</servlet-name>
+        <servlet-class>com.clri.servlet.MajorProductionsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MajorCustomers</servlet-name>
+        <servlet-class>com.clri.servlet.MajorCustomersServlet</servlet-class>
+    </servlet>
+    
     <servlet>
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>com.clri.servlet.ReportServlet</servlet-class>
@@ -72,24 +77,40 @@
     <!-- Category End -->
     <!-- Raw Materials Mapping Start -->
     <servlet-mapping>
-        <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/admin/raw/list</url-pattern>
+        <servlet-name>MajorProductions</servlet-name>
+        <url-pattern>/admin/major/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/admin/raw/saveUpdate</url-pattern>
+        <servlet-name>MajorProductions</servlet-name>
+        <url-pattern>/admin/major/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/admin/raw/edit</url-pattern>
+        <servlet-name>MajorProductions</servlet-name>
+        <url-pattern>/admin/major/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RawMaterials</servlet-name>
-        <url-pattern>/admin/raw/delete</url-pattern>
+        <servlet-name>MajorProductions</servlet-name>
+        <url-pattern>/admin/major/delete</url-pattern>
     </servlet-mapping>
-    <!-- Raw Materials Mapping End -->
+     <servlet-mapping>
+        <servlet-name>MajorCustomers</servlet-name>
+        <url-pattern>/admin/major/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MajorCustomers</servlet-name>
+        <url-pattern>/admin/major/saveUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MajorCustomers</servlet-name>
+        <url-pattern>/admin/major/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MajorCustomers</servlet-name>
+        <url-pattern>/admin/major/delete</url-pattern>
+    </servlet-mapping>
     
-    <!-- Report Mapping Start -->
+    
+    
     <servlet-mapping>
         <servlet-name>ReportServlet</servlet-name>
         <url-pattern>/reports/list</url-pattern>

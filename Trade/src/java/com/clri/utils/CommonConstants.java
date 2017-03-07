@@ -27,12 +27,12 @@ public class CommonConstants {
     public static final String CATEGORY_LIST_JSP = "/WEB-INF/views/category/list.jsp";
 
     //Raw Materials
-    public static final String RAW_LIST = "/admin/raw/list";
-    public static final String RAW_SAVE_UPDATE = "/admin/raw/saveUpdate";
-    public static final String RAW_EDIT = "/admin/raw/edit";
-    public static final String RAW_UPDATE = "/admin/raw/update";
-    public static final String RAW_DELETE = "/admin/raw/delete";
-    public static final String RAW_LIST_JSP = "/WEB-INF/views/rawmaterials/list.jsp";
+    public static final String MAJOR_LIST = "/admin/major/list";
+    public static final String MAJOR_SAVE_UPDATE = "/admin/major/saveUpdate";
+    public static final String MAJOR_EDIT = "/admin/major/edit";
+    public static final String MAJOR_UPDATE = "/admin/major/update";
+    public static final String MAJOR_DELETE = "/admin/major/delete";
+    public static final String MAJOR_LIST_JSP = "/WEB-INF/views/majorproductions/list.jsp";
 
     //Reports Page
     public static final String REPORTS_LIST = "/reports/list";
@@ -43,5 +43,6 @@ public class CommonConstants {
     public static final String CUSTOMER_SAVE_UPDATE = "/admin/customer/saveUpdate";
     public static final String CUSTOMER_LIST = "/admin/customer/list";
     public static final String CUSTOMER_LIST_JSP = "/WEB-INF/views/customer/list.jsp";
+   
 
 }

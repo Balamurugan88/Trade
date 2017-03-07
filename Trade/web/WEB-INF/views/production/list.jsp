@@ -1,6 +1,6 @@
 <%-- 
     Document   : list
-    Created on : Feb 19, 2017, 8:29:25 PM
+    Created on : Mar 7, 2017, 10:28:07 PM
     Author     : VISALI V
 --%>
 
@@ -24,29 +24,29 @@
                 <table id="datatable" class="dataTable display">
                     <thead>
                         <tr>
-                            <td>Article Code</td>
-                            <td>Category</td>
-                            <td>Sub-Category</td>
-                            <td>Price(Rs)</td>
-                            <td>Quantity(Kg)</td>
+                            <td>Items</td>
+                            <td>Country</td>
+                            <td>Units</td>
+                            <td>Quantity</td>
+                            <td>Value</td>
                             <td>Year</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${rawList}" var="raw">
+                    <c:forEach items="${majorList}" var="major">
                         <tr>
-                            <td><c:out value="${raw.articleCode}"/></td>
-                            <td><c:out value="${raw.category}"/></td>
-                            <td><c:out value="${raw.subCategory}"/></td>
-                        <td><c:out value="${raw.value}"/></td>
-                        <td><c:out value="${raw.quantity}"/></td>
-                        <td><c:out value="${raw.year}"/></td>
+                            <td><c:out value="${major.articleCode}"/></td>
+                            <td><c:out value="${major.category}"/></td>
+                            <td><c:out value="${major.subCategory}"/></td>
+                        <td><c:out value="${major.value}"/></td>
+                        <td><c:out value="${major.quantity}"/></td>
+                        <td><c:out value="${major.year}"/></td>
                         <td>
-                            <a href="<%=request.getContextPath()%>/admin/raw/edit?id=${raw.id}">
+                            <a href="<%=request.getContextPath()%>/admin/major/edit?id=${major.id}">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </a>
-                            <a href="<%=request.getContextPath()%>/admin/raw/delete?id=${raw.id}"
+                            <a href="<%=request.getContextPath()%>/admin/major/delete?id=${major.id}"
                                onclick="return confirm('Are you sure you want to delete this item?')";>
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 

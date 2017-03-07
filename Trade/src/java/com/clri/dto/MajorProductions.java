@@ -9,7 +9,7 @@ package com.clri.dto;
  *
  * @author Balamurugan
  */
-public class RawMaterials {
+public class MajorProductions {
 
     public Double getQuantity() {
         return quantity;

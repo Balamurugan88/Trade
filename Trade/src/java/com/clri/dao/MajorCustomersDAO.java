@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.clri.dao;
 
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
-import com.clri.dto.RawMaterials;
+import com.clri.dto.MajorCustomers;
+import com.clri.dto.MajorProductions;
 import com.clri.utils.Queries;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
@@ -21,41 +24,39 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  *
  * @author Balamurugan
  */
-public class RawMaterialsDAO {
+public class MajorCustomersDAO {
 
-    public int insertRawMaterials(Connection connection, RawMaterials rawMaterials) {
+    public int insertMajorCustomers(Connection connection, MajorCustomers majorcustomers) {
         int count = 0;
         try {
             QueryRunner run = new QueryRunner();
-            String sql = Queries.getQuery("INSERT_RAW_MATERIALS");
-            count = run.update(connection, sql, rawMaterials.getArticleCode(),rawMaterials.getCategory(),
-                    rawMaterials.getSubCategory(),rawMaterials.getQuantity(), rawMaterials.getValue(), rawMaterials.getYear());
-        } catch (Exception e) {
-            e.printStackTrace();
+            String sql = Queries.getQuery("INSERT_MAJOR_PRODUCTIONS");
+            count = run.update(connection, sql, majorcustomers.getItems(),majorcustomers.getArticleCode(),
+                    majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear());
+        } catch (SQLException e) {
         }
         return count;
     }
 
-    public List<RawMaterials> getList() {
-        List<RawMaterials> rawList = new ArrayList<RawMaterials>();
+    public List<MajorCustomers> getList() {
+        List<MajorCustomers> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("RAW_LIST");
+            String sql = Queries.getQuery("MAJOR_LIST");
 
-            ResultSetHandler<List<RawMaterials>> resultSetHandler = new BeanListHandler<RawMaterials>(RawMaterials.class);
+            ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
-            rawList = run.query(connecton, sql, resultSetHandler);
-        } catch (Exception e) {
-            e.printStackTrace();
+            majorList = run.query(connecton, sql, resultSetHandler);
+        } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
         }
-        return rawList;
+        return majorList;
     }
 
-    public int addUpdateRaw(RawMaterials rawMaterials) {
+    public int addUpdateRaw(majorCustomers MajorCustomers) {
         Connection connecton = null;
         int count = 0;
         try {
@@ -63,16 +64,15 @@ public class RawMaterialsDAO {
             connecton = dbcon.openConnection();
             QueryRunner run = new QueryRunner();
             String sql = "";
-            if (rawMaterials.getId() == 0) {
+            if (MajorCustomers.getId() == 0) {
                 sql = Queries.getQuery("INSERT_CATEGORY");
-                count = run.update(connecton, sql, rawMaterials.getArticleCode());
+                count = run.update(connecton, sql, MajorCustomers.getArticleCode());
             } else {
                 sql = Queries.getQuery("UPDATE_CATEGORY");
-                count = run.update(connecton, sql, rawMaterials.getValue(), rawMaterials.getQuantity(), rawMaterials.getId());
+                count = run.update(connecton, sql, MajorCustomers.getValue(), MajorCustomers.getQuantity(), MajorCustomers.getId());
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
         }
@@ -85,34 +85,46 @@ public class RawMaterialsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_RAW");
+            String sql = Queries.getQuery("DELETE_RM");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
         }
         return count;
     }
 
-    public RawMaterials getById(int id) {
-        RawMaterials rawMaterials = new RawMaterials();
+    public MajorCustomers getById(int id) {
+        MajorCustomers majorCustomers;
+        majorCustomers = new MajorCustomers();
         Connection connecton = null;
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
             String sql = Queries.getQuery("CATEGORY_BY_ID");
 
-            ResultSetHandler<RawMaterials> resultSetHandler = new BeanHandler<RawMaterials>(RawMaterials.class);
+            ResultSetHandler<MajorCustomers> resultSetHandler = new BeanHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
-            rawMaterials = run.query(connecton, sql, resultSetHandler, id);
-        } catch (Exception e) {
-            e.printStackTrace();
+            majorCustomers= run.query(connecton, sql, resultSetHandler, id);
+        } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
         }
-        return rawMaterials;
+        return majorCustomers;
     }
 
+    public int addUpdateRaw(com.clri.servlet.MajorProductions majorProductions) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int addUpdateMajor(com.clri.servlet.MajorCustomers majorCustomers) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
+
 }
+

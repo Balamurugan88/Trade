@@ -5,10 +5,10 @@
  */
 package com.clri.servlet;
 
-import com.clri.dao.RawMaterialsDAO;
+import com.clri.dao.MajorProductionsDAO;
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
-import com.clri.dto.RawMaterials;
+import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomUtils;
 import java.io.File;
@@ -131,7 +131,7 @@ public class ExcelUpload extends HttpServlet {
             if (extension.trim().equalsIgnoreCase("csv")) {
                 //process your CSV file
             }
-            CustomUtils.redirect(CommonConstants.RAW_LIST, request, response);
+            CustomUtils.redirect(CommonConstants.MAJOR_LIST, request, response);
 
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);
@@ -144,9 +144,9 @@ public class ExcelUpload extends HttpServlet {
 
         int count = 0;
         Connection connection = null;
-        RawMaterialsDAO rawMaterialsDAO = new RawMaterialsDAO();
+       MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         DataBaseConnection dbcon = new DataBaseConnection();
-        RawMaterials rawMaterials = new RawMaterials();
+        MajorProductions majorProductions = new MajorProductions();
         try {
             connection = dbcon.openConnection();
             // Creating Input Stream 
@@ -172,18 +172,17 @@ public class ExcelUpload extends HttpServlet {
                 double quantity = myRow.getCell(3).getNumericCellValue();
                 double value =  myRow.getCell(4).getNumericCellValue();
                 String year = myRow.getCell(5).getStringCellValue();
-                rawMaterials.setCategory(category);
-                rawMaterials.setQuantity(quantity);
-                rawMaterials.setValue(value);
-                rawMaterials.setYear(year);
-                rawMaterials.setSubCategory(subCategory);
-                rawMaterials.setArticleCode(articleCode);
-                count+=rawMaterialsDAO.insertRawMaterials(connection, rawMaterials);
+                majorProductions.setCategory(category);
+                majorProductions.setQuantity(quantity);
+                majorProductions.setValue(value);
+                majorProductions.setYear(year);
+                majorProductions.setSubCategory(subCategory);
+                majorProductions.setArticleCode(articleCode);
+                count+=majorProductionsDAO.insertMajorProductions(connection, majorProductions);
                 }
                 rowCount++;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
         }finally{
             DBUtils.closeConnection(connection);
         }
