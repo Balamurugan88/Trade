@@ -5,9 +5,11 @@
  */
 package com.clri.servlet;
 
+import com.clri.dao.MajorCustomersDAO;
 import com.clri.dao.MajorProductionsDAO;
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
+import com.clri.dto.MajorCustomers;
 import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomUtils;
@@ -41,9 +43,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUpload extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String TMP_DIR_PATH = "D:/MyTempFiles";
+    private static final String TMP_DIR_PATH = "F:/MyTempFiles";
     private File tmpDir;
-    private static final String DESTINATION_DIR_PATH = "D:/MySavedFiles";
+    private static final String DESTINATION_DIR_PATH = "F:/MySavedFiles";
     private File destinationDir;
 
     public ExcelUpload() {
@@ -92,6 +94,7 @@ public class ExcelUpload extends HttpServlet {
         String fullName = null;
         File file = null;
         HttpSession session = request.getSession();
+        String uploadType = request.getParameter("uploadType");
 
         try {
 
@@ -108,30 +111,34 @@ public class ExcelUpload extends HttpServlet {
                     }
                 } //Handle Uploaded files.
                 else {
-                   
+
                     fullName = item.getName().trim();
                     String modifiedName = FilenameUtils.getBaseName(fullName);
-                    modifiedName+=new Date().getTime()+"."+FilenameUtils.getExtension(fullName);
+                    modifiedName += new Date().getTime() + "." + FilenameUtils.getExtension(fullName);
                     //Write file to the ultimate location.
                     file = new File(destinationDir, modifiedName);
                     item.write(file);
                 }
-                
+
             }
 
             int count = 0;
             String extension = FilenameUtils.getExtension(fullName);
             if (extension.trim().equalsIgnoreCase("xlsx")) {
-                count = processExcelFile(file);
+                count = processExcelFile(file, uploadType);
                 session.setAttribute("uploadCount", count);
-                
+
             } else if (extension.trim().equalsIgnoreCase("xls")) {
                 //process your binary excel file
             }
             if (extension.trim().equalsIgnoreCase("csv")) {
                 //process your CSV file
             }
-            CustomUtils.redirect(CommonConstants.MAJOR_LIST, request, response);
+            if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
+                CustomUtils.redirect(CommonConstants.MAJOR_CUST_LIST, request, response);
+            } else {
+                CustomUtils.redirect(CommonConstants.MAJOR_PROD_LIST, request, response);
+            }
 
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);
@@ -140,13 +147,15 @@ public class ExcelUpload extends HttpServlet {
         }
     }
 
-    private int processExcelFile(File file) {
+    private int processExcelFile(File file, String uploadType) {
 
         int count = 0;
         Connection connection = null;
-       MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
+        MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
+        MajorCustomersDAO majorCustomersDAO = new MajorCustomersDAO();
         DataBaseConnection dbcon = new DataBaseConnection();
         MajorProductions majorProductions = new MajorProductions();
+        MajorCustomers majorCustomers = new MajorCustomers();
         try {
             connection = dbcon.openConnection();
             // Creating Input Stream 
@@ -164,30 +173,54 @@ public class ExcelUpload extends HttpServlet {
             Iterator<Row> rowIter = mySheet.rowIterator();
             int rowCount = 0;
             while (rowIter.hasNext()) {
-                 XSSFRow myRow = (XSSFRow) rowIter.next();
-                if(rowCount != 0){
-                String articleCode = myRow.getCell(0).getStringCellValue();
-                String category = myRow.getCell(1).getStringCellValue();
-                String subCategory = myRow.getCell(2).getStringCellValue();
-                double quantity = myRow.getCell(3).getNumericCellValue();
-                double value =  myRow.getCell(4).getNumericCellValue();
-                String year = myRow.getCell(5).getStringCellValue();
-                majorProductions.setCategory(category);
-                majorProductions.setQuantity(quantity);
-                majorProductions.setValue(value);
-                majorProductions.setYear(year);
-                majorProductions.setSubCategory(subCategory);
-                majorProductions.setArticleCode(articleCode);
-                count+=majorProductionsDAO.insertMajorProductions(connection, majorProductions);
+                XSSFRow row = (XSSFRow) rowIter.next();
+                if (rowCount != 0) {
+                    if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
+                            count += majorCustomersDAO.insertMajorCustomers(connection, getCustomers(row, majorCustomers));
+                    } else {
+                        count += majorProductionsDAO.insertMajorProductions(connection, getProductions(row, majorProductions));
+                    }
                 }
                 rowCount++;
             }
         } catch (IOException e) {
-        }finally{
+        } finally {
             DBUtils.closeConnection(connection);
         }
         return count;
 
+    }
+
+    public MajorProductions getProductions(XSSFRow row, MajorProductions majorProductions) {
+        String articleCode = row.getCell(0).getStringCellValue();
+        String category = row.getCell(1).getStringCellValue();
+        String subCategory = row.getCell(2).getStringCellValue();
+        double quantity = row.getCell(3).getNumericCellValue();
+        double value = row.getCell(4).getNumericCellValue();
+        String year = row.getCell(5).getStringCellValue();
+        majorProductions.setCategory(category);
+        majorProductions.setQuantity(quantity);
+        majorProductions.setValue(value);
+        majorProductions.setYear(year);
+        majorProductions.setSubCategory(subCategory);
+        majorProductions.setArticleCode(articleCode);
+        return majorProductions;
+    }
+
+    public MajorCustomers getCustomers(XSSFRow row, MajorCustomers majorCustomers) {
+        String items = row.getCell(0).getStringCellValue();
+        String articleCode = row.getCell(1).getRawValue();
+        String country = row.getCell(2).getStringCellValue();
+        double quantity = row.getCell(3).getNumericCellValue();
+        double value = row.getCell(4).getNumericCellValue();
+        String year = row.getCell(5).getStringCellValue();
+        majorCustomers.setItems(items);
+        majorCustomers.setQuantity(quantity);
+        majorCustomers.setValue(value);
+        majorCustomers.setYear(year);
+        majorCustomers.setCountry(country);
+        majorCustomers.setArticleCode(articleCode);
+        return majorCustomers;
     }
 
 }

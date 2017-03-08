@@ -27,12 +27,20 @@ public class CommonConstants {
     public static final String CATEGORY_LIST_JSP = "/WEB-INF/views/category/list.jsp";
 
     //Raw Materials
-    public static final String MAJOR_LIST = "/admin/major/list";
-    public static final String MAJOR_SAVE_UPDATE = "/admin/major/saveUpdate";
-    public static final String MAJOR_EDIT = "/admin/major/edit";
-    public static final String MAJOR_UPDATE = "/admin/major/update";
-    public static final String MAJOR_DELETE = "/admin/major/delete";
-    public static final String MAJOR_LIST_JSP = "/WEB-INF/views/majorproductions/list.jsp";
+    public static final String MAJOR_PROD_LIST = "/admin/majorproductions/list";
+    public static final String MAJOR_PROD_SAVE_UPDATE = "/admin/majorproductions/saveUpdate";
+    public static final String MAJOR_PROD_EDIT = "/admin/majorproductions/edit";
+    public static final String MAJOR_PROD_UPDATE = "/admin/majorproductions/update";
+    public static final String MAJOR_PROD_DELETE = "/admin/majorproductions/delete";
+    public static final String MAJOR_PROD_LIST_JSP = "/WEB-INF/views/majorproductions/list.jsp";
+    
+    
+    public static final String MAJOR_CUST_LIST = "/admin/majorcustomer/list";
+    public static final String MAJOR_CUST_SAVE_UPDATE = "/admin/majorcustomer/saveUpdate";
+    public static final String MAJOR_CUST_EDIT = "/admin/majorcustomer/edit";
+    public static final String MAJOR_CUST_UPDATE = "/admin/majorcustomer/update";
+    public static final String MAJOR_CUST_DELETE = "/admin/majorcustomer/delete";
+    public static final String MAJOR_CUST_LIST_JSP = "/WEB-INF/views/majorcustomers/list.jsp";
 
     //Reports Page
     public static final String REPORTS_LIST = "/reports/list";
@@ -43,6 +51,10 @@ public class CommonConstants {
     public static final String CUSTOMER_SAVE_UPDATE = "/admin/customer/saveUpdate";
     public static final String CUSTOMER_LIST = "/admin/customer/list";
     public static final String CUSTOMER_LIST_JSP = "/WEB-INF/views/customer/list.jsp";
+    
+    //upload type
+    public static final String CUSTOMER_UPLOAD="customer";
+    public static final String PRODUCTION_UPLOAD="production";
    
 
 }

@@ -28,7 +28,7 @@ public class MajorProductionsDAO {
         int count = 0;
         try {
             QueryRunner run = new QueryRunner();
-            String sql = Queries.getQuery("INSERT_MAJOR_PRODUCTIONS");
+            String sql = Queries.getQuery("INSERT_MAJOR_PROD");
             count = run.update(connection, sql, majorProductions.getArticleCode(),majorProductions.getCategory(),
                     majorProductions.getSubCategory(),majorProductions.getQuantity(), majorProductions.getValue(), majorProductions.getYear());
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class MajorProductionsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_LIST");
+            String sql = Queries.getQuery("MAJOR_PROD_LIST");
 
             ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
             QueryRunner run = new QueryRunner();
@@ -112,7 +112,7 @@ public class MajorProductionsDAO {
         return majorProductions;
     }
 
-    public int addUpdateRaw(com.clri.servlet.MajorProductions majorProductions) {
+    public int addUpdateRaw(com.clri.servlet.MajorProductionsServlet majorProductions) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

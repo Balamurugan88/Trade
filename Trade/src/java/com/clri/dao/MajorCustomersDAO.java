@@ -9,7 +9,6 @@ package com.clri.dao;
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
 import com.clri.dto.MajorCustomers;
-import com.clri.dto.MajorProductions;
 import com.clri.utils.Queries;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,7 +29,7 @@ public class MajorCustomersDAO {
         int count = 0;
         try {
             QueryRunner run = new QueryRunner();
-            String sql = Queries.getQuery("INSERT_MAJOR_PRODUCTIONS");
+            String sql = Queries.getQuery("INSERT_MAJOR_CUST");
             count = run.update(connection, sql, majorcustomers.getItems(),majorcustomers.getArticleCode(),
                     majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear());
         } catch (SQLException e) {
@@ -44,7 +43,7 @@ public class MajorCustomersDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_LIST");
+            String sql = Queries.getQuery("MAJOR_CUST_LIST");
 
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
@@ -56,7 +55,7 @@ public class MajorCustomersDAO {
         return majorList;
     }
 
-    public int addUpdateRaw(majorCustomers MajorCustomers) {
+    public int addUpdateCustomers(MajorCustomers majorCustomers ) {
         Connection connecton = null;
         int count = 0;
         try {
@@ -64,12 +63,12 @@ public class MajorCustomersDAO {
             connecton = dbcon.openConnection();
             QueryRunner run = new QueryRunner();
             String sql = "";
-            if (MajorCustomers.getId() == 0) {
-                sql = Queries.getQuery("INSERT_CATEGORY");
-                count = run.update(connecton, sql, MajorCustomers.getArticleCode());
+            if (majorCustomers.getId() == 0) {
+                sql = Queries.getQuery("INSERT_MAJOR_CUSTOMERS");
+                count = run.update(connecton, sql, majorCustomers.getArticleCode());
             } else {
-                sql = Queries.getQuery("UPDATE_CATEGORY");
-                count = run.update(connecton, sql, MajorCustomers.getValue(), MajorCustomers.getQuantity(), MajorCustomers.getId());
+                sql = Queries.getQuery("UPDATE_MAJOR_CUSTOMERS");
+                count = run.update(connecton, sql, majorCustomers.getValue(), majorCustomers.getQuantity(), majorCustomers.getId());
             }
 
         } catch (SQLException e) {
@@ -96,8 +95,7 @@ public class MajorCustomersDAO {
     }
 
     public MajorCustomers getById(int id) {
-        MajorCustomers majorCustomers;
-        majorCustomers = new MajorCustomers();
+        MajorCustomers majorCustomers = new MajorCustomers();
         Connection connecton = null;
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
@@ -113,18 +111,6 @@ public class MajorCustomersDAO {
         }
         return majorCustomers;
     }
-
-    public int addUpdateRaw(com.clri.servlet.MajorProductions majorProductions) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int addUpdateMajor(com.clri.servlet.MajorCustomers majorCustomers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    
 
 }
 

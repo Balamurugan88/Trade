@@ -6,6 +6,7 @@
 package com.clri.servlet;
 
 import com.clri.dao.MajorProductionsDAO;
+import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomMessage;
 import com.clri.utils.CustomUtils;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-@WebServlet(name = "MajorProductions", urlPatterns = {"/major"})
-public class MajorProductions extends HttpServlet {
+public class MajorProductionsServlet extends HttpServlet {
+
     private Object majorList;
 
     /**
@@ -38,17 +39,17 @@ public class MajorProductions extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String path = request.getServletPath();
-         int count =0;
+        String path = request.getServletPath();
+        int count = 0;
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         MajorProductions majorProductions = new MajorProductions();
         HttpSession session = request.getSession();
-        if(session.getAttribute("uploadCount") != null){
+        if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
             CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
             session.setAttribute("uploadCount", null);
         }
-        if (!path.equals(CommonConstants.MAJOR_SAVE_UPDATE)) if (path.equals(CommonConstants.MAJOR_DELETE)) {
+        if (path.equals(CommonConstants.MAJOR_PROD_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
             count = majorProductionsDAO.deleteCategory(id);
             if (count == 0) {
@@ -56,12 +57,12 @@ public class MajorProductions extends HttpServlet {
             } else {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_SUCCESS"), request);
             }
-        } else if (path.equals(CommonConstants.MAJOR_EDIT)) {
+        } else if (path.equals(CommonConstants.MAJOR_PROD_EDIT)) {
             int id = Integer.parseInt(request.getParameter("id"));
-           
-            request.setAttribute("majorProductions",majorProductions);
-        } else {
-            majorProductions.setId(CustomUtils.getId(request,"majorId"));
+            majorProductions = majorProductionsDAO.getById(id);
+            request.setAttribute("majorProductions", majorProductions);
+        } else if(path.equals(CommonConstants.MAJOR_PROD_SAVE_UPDATE)){
+            majorProductions.setId(CustomUtils.getId(request, "majorId"));
             majorProductions.setArticleCode(request.getParameter("articleCode"));
             majorProductions.setQuantity(Double.parseDouble(request.getParameter("quantity")));
             count = majorProductionsDAO.addUpdateRaw(majorProductions);
@@ -71,10 +72,10 @@ public class MajorProductions extends HttpServlet {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
         }
-        List<com.clri.dto.MajorProductions> majorList = majorProductionsDAO.getList();
+        List<MajorProductions> majorList = majorProductionsDAO.getList();
         request.setAttribute("majorList", majorList);
-        CustomUtils.setPathName(CommonConstants.MAJOR_LIST, request);
-        CustomUtils.forward(CommonConstants.MAJOR_LIST_JSP, request, response);
+        CustomUtils.setPathName(CommonConstants.MAJOR_PROD_LIST, request);
+        CustomUtils.forward(CommonConstants.MAJOR_PROD_LIST_JSP, request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -115,17 +116,5 @@ public class MajorProductions extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void setId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void setArticleCode(String parameter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void setQuantity(double parseDouble) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

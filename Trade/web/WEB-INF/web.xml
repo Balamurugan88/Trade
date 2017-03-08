@@ -35,6 +35,7 @@
         <servlet-class>com.clri.servlet.MajorCustomersServlet</servlet-class>
     </servlet>
     
+    
     <servlet>
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>com.clri.servlet.ReportServlet</servlet-class>
@@ -76,37 +77,37 @@
     </servlet-mapping>
     <!-- Category End -->
     <!-- Raw Materials Mapping Start -->
-    <servlet-mapping>
+     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/major/list</url-pattern>
+        <url-pattern>/admin/majorproductions/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/major/saveUpdate</url-pattern>
+        <url-pattern>/admin/majorproductions/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/major/edit</url-pattern>
+        <url-pattern>/admin/majorproductions/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/major/delete</url-pattern>
+        <url-pattern>/admin/majorproductions/delete</url-pattern>
     </servlet-mapping>
      <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/major/list</url-pattern>
+        <url-pattern>/admin/majorcustomer/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/major/saveUpdate</url-pattern>
+        <url-pattern>/admin/majorcustomer/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/major/edit</url-pattern>
+        <url-pattern>/admin/majorcustomer/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/major/delete</url-pattern>
+        <url-pattern>/admin/majorcustomer/delete</url-pattern>
     </servlet-mapping>
     
     

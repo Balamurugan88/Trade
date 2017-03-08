@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author VISALI V
  */
-class majorCustomersDAO {
+public class majorCustomersDAO {
 
     static int deleteCategory(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
