@@ -83,7 +83,7 @@ public class MajorProductionsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_RM");
+            String sql = Queries.getQuery("DELETE_MAJOR_PROD");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (SQLException e) {

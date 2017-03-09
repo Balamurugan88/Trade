@@ -31,7 +31,7 @@
                  <% if (isLoggedIn) {%>
                  <a class="menu" href="#menu"></a>
                  <%}%>
-                <a href="../<%=request.getContextPath()%>">
+                <!--<a href="../<%=request.getContextPath()%>">-->
                     <img src="<%=path%>/images/crilogo.png">
                     <span id="spnLogoText" class="clri-logo-text">India's Trading Information System for Leather and its Relevant areas</span>
                 </a>
