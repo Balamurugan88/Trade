@@ -55,6 +55,10 @@ public class CommonConstants {
     //upload type
     public static final String CUSTOMER_UPLOAD="customer";
     public static final String PRODUCTION_UPLOAD="production";
+    public static Object MAJOR_PRODUCTIONILP_DELETE;
+    public static Object MAJOR_PRODUCTIONILP_EDIT;
+    public static String MAJOR_PRODUCTIONILP_LIST;
+    public static String MAJOR_PRODUCTIONILP_LIST_JSP;
    
 
 }

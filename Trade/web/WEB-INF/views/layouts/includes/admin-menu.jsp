@@ -15,17 +15,16 @@
             <ul>
                 <li><a>Finished Leather</a>
                     <ul>
-
+                        
                         <li><a>Major Customers</a></li>
-                        <li><a>Major Suppliers</a></li>
-                        <li><a>Major Productions with value and year</a></li>
+                        <li><a>Major Production with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Leather Products</a>
                     <ul>
-                        <li><a>Major Customers</a></li>
-                        <li><a>Major Suppliers</a></li>
-                        <li><a> Production</a></li>
+    
+                        <li><a href="<%=request.getContextPath()%>/admin/majorcustomerilp/">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorproductionilp/">Major Production with value and year</a></li>
                     </ul>
                 </li>
             </ul>
@@ -34,24 +33,24 @@
             <ul>
                 <li><a>Raw Materials</a>
                     <ul>
+                        
                         <li><a href="<%=request.getContextPath()%>/admin/majorcustomer/list">Major Customers</a></li>
-                        <li><a href="<%=request.getContextPath()%>/admin/majorproductions/list">Major Productions</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorproductions/list">Major Production with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Finished Leather</a>
                     <ul>
 
+                       
                         <li><a>Major Customers</a></li>
-                        <li><a>Major Suppliers</a></li>
                         <li><a>Major Productions with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Leather Products</a>
                     <ul>
-                        <li><a>List of Leather Products</a></li>
-                        <li><a>Major Customers</a></li>
-                        <li><a>Major Suppliers</a></li>
-                        <li><a>Major Productions with value and year</a></li>
+                       
+                        <li><a href="<%=request.getContextPath()%>/admin/majorcustomerelp/">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorproductionelp/">Major Production with value and year</a></li>
                     </ul>
                 </li>
             </ul>

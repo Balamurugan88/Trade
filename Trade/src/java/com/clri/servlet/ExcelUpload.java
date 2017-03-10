@@ -5,10 +5,12 @@
  */
 package com.clri.servlet;
 
+import com.clri.dao.MajorCustomerilpDAO;
 import com.clri.dao.MajorCustomersDAO;
 import com.clri.dao.MajorProductionsDAO;
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
+import com.clri.dto.MajorCustomerilp;
 import com.clri.dto.MajorCustomers;
 import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
@@ -153,9 +155,11 @@ public class ExcelUpload extends HttpServlet {
         Connection connection = null;
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         MajorCustomersDAO majorCustomersDAO = new MajorCustomersDAO();
+         MajorCustomerilpDAO majorCustomerilpDAO = new MajorCustomerilpDAO();
         DataBaseConnection dbcon = new DataBaseConnection();
         MajorProductions majorProductions = new MajorProductions();
         MajorCustomers majorCustomers = new MajorCustomers();
+        MajorCustomerilp majorCustomerilp = new MajorCustomerilp();
         try {
             connection = dbcon.openConnection();
             // Creating Input Stream 
@@ -177,9 +181,15 @@ public class ExcelUpload extends HttpServlet {
                 if (rowCount != 0) {
                     if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
                             count += majorCustomersDAO.insertMajorCustomers(connection, getCustomers(row, majorCustomers));
-                    } else {
+                    } else if(CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)){
+                   
                         count += majorProductionsDAO.insertMajorProductions(connection, getProductions(row, majorProductions));
                     }
+                    else {
+                            count += majorCustomerilpDAO.insertMajorCustomerilp(connection, getCustomers(row, majorCustomerilp));
+                            
+                            }
+                    
                 }
                 rowCount++;
             }
@@ -221,6 +231,25 @@ public class ExcelUpload extends HttpServlet {
         majorCustomers.setCountry(country);
         majorCustomers.setArticleCode(articleCode);
         return majorCustomers;
+    }
+    public MajorCustomerilp getCustomers(XSSFRow row, MajorCustomerilp majorCustomerilp) {
+        String items = row.getCell(0).getStringCellValue();
+        String country = row.getCell(2).getStringCellValue();
+        String units = row.getCell(2).getStringCellValue();
+        double quantity = row.getCell(3).getNumericCellValue();
+        double value = row.getCell(4).getNumericCellValue();
+        String year = row.getCell(5).getStringCellValue();
+        majorCustomerilp.setItems(items);
+        majorCustomerilp.setQuantity(quantity);
+        majorCustomerilp.setValue(value);
+        majorCustomerilp.setYear(year);
+        majorCustomerilp.setCountry(country);
+        majorCustomerilp.setUnits(units);
+        return majorCustomerilp;
+    }
+
+    private MajorCustomerilpDAO.MajorCustomerilp getCustomers(XSSFRow row, MajorCustomerilp majorCustomerilp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
