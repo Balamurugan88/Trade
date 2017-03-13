@@ -78,6 +78,7 @@
                     filter: "year",
                     year :year,
                     items:items,
+                    itemKey :"items",
                     dropdown: [
                         {"container": "year", "key": "year"},
                         {"container": "items", "key": "items"}
@@ -101,9 +102,9 @@
                 }
                 var options = {
                     list: productionList,
-                    xKey: "country",
+                    xKey: "category",
                     yKey: "quantity",
-                    xName: "country",
+                    xName: "category",
                     yName: "visits",
                     container: "proddiv",
                     filter: "year",
@@ -122,7 +123,7 @@
             }
             $(document).ready(function () {
                 createCustomerChart();
-               // createProdChart();
+                createProdChart();
 
             });
         </script>
