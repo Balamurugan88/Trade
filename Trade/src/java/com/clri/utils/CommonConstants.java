@@ -25,6 +25,9 @@ public class CommonConstants {
     public static final String HOME_PAGE = "/index.jsp";
 
     public static final String CATEGORY_LIST_JSP = "/WEB-INF/views/category/list.jsp";
+    
+    public static final String DASHBOARD_JSP = "/WEB-INF/views/dashboard/index.jsp";
+    public static final String DASHABOARD_PAGE ="/admin/dashboard";
 
     //Raw Materials
     public static final String MAJOR_PROD_LIST = "/admin/majorproductions/list";

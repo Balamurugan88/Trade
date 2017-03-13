@@ -16,3 +16,7 @@
 <script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.mmenu.all.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.datepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/js/amcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/js/serial.js"></script>
+<script type="text/javascript" src="<%=path%>/js/chart.js"></script>
+<script type="text/javascript" src="<%=path%>/js/underscore.js"></script>
