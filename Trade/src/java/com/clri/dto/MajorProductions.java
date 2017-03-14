@@ -43,20 +43,14 @@ public class MajorProductions {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    
+
+    public String getItems() {
+        return items;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
+    public void setItems(String items) {
+        this.items = items;
     }
 
    
@@ -71,8 +65,7 @@ public class MajorProductions {
     
     public int id;
     public String articleCode;
-    public String category;
-    public String subCategory;
+    public String items;
     public Double quantity;
     public Double value;
     public String year;
@@ -87,3 +80,4 @@ public class MajorProductions {
     }
     
 }
+

@@ -15,7 +15,7 @@
     if(request.getSession().getAttribute("user") != null){
         isLoggedIn = true;
         Users user = (Users)request.getSession().getAttribute("user");
-     
+        userName = user.getUserName();
     }
 %>
 

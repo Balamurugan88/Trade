@@ -5,21 +5,9 @@
         <pattern>/static/*</pattern>
     </excludes>
 
-    <decorator name="main" page="twoColumnsLayout.jsp">
-        <pattern>/*</pattern>
-    </decorator>
-    
-    <decorator name="home" page="oneColumnLayout.jsp">
-        <pattern>/</pattern>
-    </decorator>
-    
-    <decorator name="customer" page="customerLayout.jsp">
-        <pattern>/report/*</pattern>
-    </decorator>
     
      <decorator name="admin" page="adminLayout.jsp">
-        <pattern>/admin/*</pattern>
-        <pattern>/reports/*</pattern>
+        <pattern>/*</pattern>
     </decorator>
 
 </decorators>

@@ -79,43 +79,39 @@
     <!-- Raw Materials Mapping Start -->
      <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/majorproductions/list</url-pattern>
+        <url-pattern>/majorproductions/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/majorproductions/saveUpdate</url-pattern>
+        <url-pattern>/majorproductions/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/majorproductions/edit</url-pattern>
+        <url-pattern>/majorproductions/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
-        <url-pattern>/admin/majorproductions/delete</url-pattern>
+        <url-pattern>/majorproductions/delete</url-pattern>
     </servlet-mapping>
      <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/majorcustomer/list</url-pattern>
+        <url-pattern>/majorcustomer/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/majorcustomer/saveUpdate</url-pattern>
+        <url-pattern>/majorcustomer/saveUpdate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/majorcustomer/edit</url-pattern>
+        <url-pattern>/majorcustomer/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
-        <url-pattern>/admin/majorcustomer/delete</url-pattern>
+        <url-pattern>/majorcustomer/delete</url-pattern>
     </servlet-mapping>
     
     
     
-    <servlet-mapping>
-        <servlet-name>ReportServlet</servlet-name>
-        <url-pattern>/reports/list</url-pattern>
-    </servlet-mapping>
    
     <!-- Report Mapping End -->
     <servlet-mapping>

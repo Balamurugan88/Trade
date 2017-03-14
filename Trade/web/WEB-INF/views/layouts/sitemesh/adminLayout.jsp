@@ -1,3 +1,4 @@
+<%@page import="com.clri.dto.Users"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,7 +6,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
-
+<%
+    String userRole = "";
+    boolean isLoggedIn = false;
+    if (request.getSession().getAttribute("user") != null) {
+        isLoggedIn = true;
+        Users user = (Users) request.getSession().getAttribute("user");
+        userRole = user.getUserRole();
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -21,7 +30,11 @@
             </div>
             <div id="content">
                 <div id="sidemenu" style="width:5px">
+                    <% if (userRole.equalsIgnoreCase("admin")) {%>
                     <jsp:include page="/WEB-INF/views/layouts/includes/admin-menu.jsp"/>
+                    <%} else {%>
+                    <jsp:include page="/WEB-INF/views/layouts/includes/customer-menu.jsp"/>
+                    <%}%>
                 </div>
                 <div id="main" class="container col-sm-11 pull-left">
                     <jsp:include page="/WEB-INF/views/layouts/includes/status.jsp"/>

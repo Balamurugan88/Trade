@@ -5,6 +5,7 @@
  */
 package com.clri.utils;
 
+import com.clri.dto.Users;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,35 +27,48 @@ public class CustomUtils {
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }
-    
-    public static String getUrl(HttpServletRequest request){
-        String url = ((HttpServletRequest)request).getRequestURL().toString();
-        String serverPath = "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
-        url = url.replace(serverPath,"");
+
+    public static String getUrl(HttpServletRequest request) {
+        String url = ((HttpServletRequest) request).getRequestURL().toString();
+        String serverPath = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        url = url.replace(serverPath, "");
         return url;
     }
-    
-    public static void setPathName(String url, HttpServletRequest request){
+
+    public static void setPathName(String url, HttpServletRequest request) {
         url = request.getContextPath() + url;
         request.setAttribute("pathName", url);
     }
-    
-     public static void redirect(String url, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-       url=request.getContextPath()+"/"+url;
-       response.sendRedirect(url);
+
+    public static void redirect(String url, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        url = request.getContextPath() + "/" + url;
+        response.sendRedirect(url);
     }
-     
-     public static int getId(HttpServletRequest request, String parameterName){
-         int id = 0;
-         String idString = request.getParameter(parameterName).trim();
-         if(!idString.equals("")){
-             id = Integer.parseInt(idString);
-         }
-         return id;
-     }
-     
-     public static boolean isStringInArray(String item, String[] array, boolean ignoreCase) {
-        if (array == null) return false;
+
+    public static int getId(HttpServletRequest request, String parameterName) {
+        int id = 0;
+        String idString = request.getParameter(parameterName).trim();
+        if (!idString.equals("")) {
+            id = Integer.parseInt(idString);
+        }
+        return id;
+    }
+
+    public static boolean isAdmin(HttpServletRequest request) {
+        boolean isAdmin = false;
+        if (request.getSession().getAttribute("user") != null) {
+            Users user = (Users) request.getSession().getAttribute("user");
+            if (user.getUserRole().equalsIgnoreCase(CommonConstants.ADMIN)) {
+                isAdmin = true;
+            }
+        }
+        return isAdmin;
+    }
+
+    public static boolean isStringInArray(String item, String[] array, boolean ignoreCase) {
+        if (array == null) {
+            return false;
+        }
 
         boolean result = false;
 
@@ -67,15 +81,13 @@ public class CustomUtils {
                         result = true;
                         break;
                     }
-                }
-                else {
+                } else {
                     if (tmp.equals(item)) {
                         result = true;
                         break;
                     }
                 }
-            }
-            else {
+            } else {
                 if (item == null) {
                     result = true;
                     break;

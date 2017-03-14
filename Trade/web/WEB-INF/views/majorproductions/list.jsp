@@ -4,6 +4,7 @@
     Author     : VISALI V
 --%>
 
+<%@page import="com.clri.utils.CustomUtils"%>
 <%@ page language="java" contentType="text/html;" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,12 +16,14 @@
     <body>
         <div class="col-sm-12">
             <div class="col-sm-12">
+                <%if (CustomUtils.isAdmin(request)) {%>
                 <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=production&type=2" enctype="multipart/form-data">
                     <div class="input-group pull-left col-sm-offset-6 col-sm-6">
                         <input type="file" name="file" class="form-control" placeholder="Upload File">
                     </div>
                     <input type="submit" class="btn btn-primary col-sm-offset-8 col-sm4" value="Submit"/>
                 </form>
+                <%}%>
                 <table id="datatable" class="dataTable display">
                     <thead>
                         <tr>
@@ -30,7 +33,9 @@
                             <td>Price(Rs)</td>
                             <td>Quantity(Kg)</td>
                             <td>Year</td>
+                            <%if (CustomUtils.isAdmin(request)) {%>
                             <td>Action</td>
+                            <%}%>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +47,7 @@
                                 <td><c:out value="${major.value}"/></td>
                                 <td><c:out value="${major.quantity}"/></td>
                                 <td><c:out value="${major.year}"/></td>
+                                <%if (CustomUtils.isAdmin(request)) {%>
                                 <td>
                                     <a href="<%=request.getContextPath()%>/admin/major/edit?id=${major.id}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -52,6 +58,7 @@
 
                                     </a>
                                 </td>
+                                <%}%>
                             </tr>
                         </c:forEach>    
                     </tbody>

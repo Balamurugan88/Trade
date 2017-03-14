@@ -205,18 +205,17 @@ public class ExcelUpload extends HttpServlet {
     }
 
     public MajorProductions getProductions(XSSFRow row, MajorProductions majorProductions) {
-        String articleCode = row.getCell(0).getStringCellValue();
-        String category = row.getCell(1).getStringCellValue();
-        String subCategory = row.getCell(2).getStringCellValue();
-        double quantity = row.getCell(3).getNumericCellValue();
-        double value = row.getCell(4).getNumericCellValue();
-        String year = row.getCell(5).getStringCellValue();
-        majorProductions.setCategory(category);
+        String articleCode = row.getCell(0).getRawValue();
+        String items = row.getCell(1).getStringCellValue();
+        double quantity = row.getCell(2).getNumericCellValue();
+        double value = row.getCell(3).getNumericCellValue();
+        String year = row.getCell(4).getStringCellValue();
+        majorProductions.setItems(items);
         majorProductions.setQuantity(quantity);
         majorProductions.setValue(value);
         majorProductions.setYear(year);
-        majorProductions.setSubCategory(subCategory);
         majorProductions.setArticleCode(articleCode);
+       
         return majorProductions;
     }
 
