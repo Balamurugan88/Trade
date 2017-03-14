@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-@WebServlet(name = "ImportServlet", urlPatterns = {"/admin/import/*"})
+@WebServlet(name = "ImportServlet", urlPatterns = {"/import/*"})
 public class ImportServlet extends HttpServlet {
 
     /**

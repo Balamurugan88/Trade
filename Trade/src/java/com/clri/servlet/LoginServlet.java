@@ -49,11 +49,7 @@ public class LoginServlet extends HttpServlet {
             CustomUtils.forward(url, request, response);
         } else {
             session.setAttribute("user", user);
-            if (user.getUserType() == 1) {
-                url = CommonConstants.DASHABOARD_PAGE;
-            } else {
-                url = CommonConstants.REPORTS_LIST;
-            }
+            url = CommonConstants.DASHABOARD_PAGE;
             CustomUtils.redirect(url, request, response);
         }
         
