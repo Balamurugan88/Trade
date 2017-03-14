@@ -29,8 +29,13 @@
                         <tr>
                             <td>Article Code</td>
                             <td>Items</td>
+<<<<<<< HEAD
                             <td>Quantity</td>
                             <td>Value</td>
+=======
+                            <td>Price(Rs)</td>
+                            <td>Quantity(Kg)</td>
+>>>>>>> origin/master
                             <td>Year</td>
                              <%if(CustomUtils.isAdmin(request)){%>
                             <td>Action</td>
@@ -41,9 +46,14 @@
                         <c:forEach items="${prodList}" var="prod">
                             <tr>
                                 <td><c:out value="${prod.articleCode}"/></td>
+<<<<<<< HEAD
                                 
                                 <td><c:out value="${prod.items}"/></td>
                                 
+=======
+                                <td><c:out value="${prod.category}"/></td>
+                                <td><c:out value="${prod.value}"/></td>
+>>>>>>> origin/master
                                 <td><c:out value="${prod.quantity}"/></td>
                                 <td><c:out value="${prod.value}"/></td>
                                 <td><c:out value="${prod.year}"/></td>
