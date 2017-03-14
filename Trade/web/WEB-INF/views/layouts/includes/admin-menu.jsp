@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%-- 
     Document   : admin-menu
     Created on : Feb 26, 2017, 3:10:22 AM
