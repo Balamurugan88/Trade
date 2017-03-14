@@ -28,8 +28,7 @@
                     <thead>
                         <tr>
                             <td>Article Code</td>
-                            <td>Category</td>
-                            <td>Sub-Category</td>
+                            <td>Items</td>
                             <td>Price(Rs)</td>
                             <td>Quantity(Kg)</td>
                             <td>Year</td>
@@ -43,7 +42,6 @@
                             <tr>
                                 <td><c:out value="${major.articleCode}"/></td>
                                 <td><c:out value="${major.category}"/></td>
-                                <td><c:out value="${major.subCategory}"/></td>
                                 <td><c:out value="${major.value}"/></td>
                                 <td><c:out value="${major.quantity}"/></td>
                                 <td><c:out value="${major.year}"/></td>
