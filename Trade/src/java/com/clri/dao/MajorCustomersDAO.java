@@ -30,7 +30,7 @@ public class MajorCustomersDAO {
         try {
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_MAJOR_CUST");
-            count = run.update(connection, sql, majorcustomers.getItems(),majorcustomers.getArticleCode(),
+            count = run.update(connection, sql, majorcustomers.getArticleCode(),majorcustomers.getItems(),
                     majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear(),majorcustomers.getType());
         } catch (SQLException e) {
         }

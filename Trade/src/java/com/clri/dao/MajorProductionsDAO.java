@@ -30,7 +30,7 @@ public class MajorProductionsDAO {
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_MAJOR_PROD");
             count = run.update(connection, sql, majorProductions.getArticleCode(),majorProductions.getItems(),
-majorProductions.getQuantity(), majorProductions.getValue(),
+                                                majorProductions.getQuantity(), majorProductions.getValue(),
                     majorProductions.getYear(),majorProductions.getType());
         } catch (SQLException e) {
         }
