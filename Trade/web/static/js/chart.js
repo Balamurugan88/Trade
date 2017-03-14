@@ -46,7 +46,7 @@ var createChart = function (options) {
         "angle": 30,
         "valueAxes": [{
                 "position": "left",
-                "title": "Quantity"
+                "title": "Value"
             }],
         "graphs": [{
                 "balloonText": "[[category]]: <b>[[value]]</b>",

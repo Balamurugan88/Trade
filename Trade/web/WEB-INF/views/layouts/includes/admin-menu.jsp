@@ -50,8 +50,8 @@
                 <li><a>Leather Products</a>
                     <ul>
 
-                        <li><a href="<%=request.getContextPath()%>/admin/majorcustomerelp/">Major Customers</a></li>
-                        <li><a href="<%=request.getContextPath()%>/admin/majorproductionelp/">Major Production with value and year</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorcustomerilp/">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin/majorproductionilp/">Major Production with value and year</a></li>
                     </ul>
                 </li>
             </ul>

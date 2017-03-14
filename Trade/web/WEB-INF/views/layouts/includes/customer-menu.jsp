@@ -11,7 +11,7 @@
             <a href="#import">Import</a>
              <li><a>Finished Leather</a>
                 <ul>
-                         <li><a>List of Finished Leather</a></li>
+                    
                         <li><a>Major Customers</a></li>
                         <li><a>Major Suppliers</a></li>
                         <li><a>Major Productions with value and year</a></li>
@@ -20,7 +20,7 @@
                 <li><a>Leather Products</a>
                 
                     <ul>
-                        <li><a>List of Leather Products</a></li>
+                       
                         <li><a>Major Customers</a></li>
                         <li><a>Major Suppliers</a></li>
                         <li><a>Major Productions with value and year</a></li>
@@ -33,7 +33,7 @@
         <li><a href="<%=request.getContextPath()%>/admin/rm/">Export</a>
              <li><a>Raw Materials</a>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/admin/items/list">List of Raw Materials</a></li>
+                   
                         <li><a href="<%=request.getContextPath()%>/admin/raw/list">Major Customers</a></li>
                         <li><a href="<%=request.getContextPath()%>/admin/major/list">Major Productions</a></li>
                     </ul>
@@ -41,7 +41,7 @@
             <ul>
                 <li><a>Finished Leather</a>
                     <ul>
-                        <li><a>List of Finished Leather</a></li>
+                        
                         <li><a>Major Customers</a></li>
                         <li><a>Major Suppliers</a></li>
                         <li><a>Major Productions with value and year</a></li>
@@ -49,7 +49,7 @@
                 </li>
                 <li><a>Leather Products</a>
                 <ul>
-                    <li><a>List of Leather Products</a></li>
+                
                         <li><a>Major Customers</a></li>
                         <li><a>Major Suppliers</a></li>
                         <li><a>Major Productions with value and year</a></li>
