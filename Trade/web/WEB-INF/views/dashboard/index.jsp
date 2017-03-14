@@ -71,7 +71,7 @@
                 var options = {
                     list: customerList,
                     xKey: "country",
-                    yKey: "quantity",
+                    yKey: "value",
                     xName: "country",
                     yName: "visits",
                     container: "chartdiv",
@@ -103,7 +103,7 @@
                 var options = {
                     list: productionList,
                     xKey: "category",
-                    yKey: "quantity",
+                    yKey: "value",
                     xName: "category",
                     yName: "visits",
                     container: "proddiv",

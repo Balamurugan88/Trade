@@ -69,7 +69,7 @@ public class MajorCustomersServlet extends HttpServlet {
                 CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
             }
         }
-        List<MajorCustomers> majorList = majorCustomersDAO.getList();
+        List<MajorCustomers> majorList = majorCustomersDAO.getList(CommonConstants.EXPORT);
         request.setAttribute("majorList", majorList);
         CustomUtils.setPathName(CommonConstants.MAJOR_CUST_LIST, request);
         CustomUtils.forward(CommonConstants.MAJOR_CUST_LIST_JSP, request, response);

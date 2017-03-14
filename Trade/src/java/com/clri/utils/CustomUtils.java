@@ -27,6 +27,13 @@ public class CustomUtils {
         rd.forward(request, response);
     }
     
+    public static String getUrl(HttpServletRequest request){
+        String url = ((HttpServletRequest)request).getRequestURL().toString();
+        String serverPath = "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+        url = url.replace(serverPath,"");
+        return url;
+    }
+    
     public static void setPathName(String url, HttpServletRequest request){
         url = request.getContextPath() + url;
         request.setAttribute("pathName", url);

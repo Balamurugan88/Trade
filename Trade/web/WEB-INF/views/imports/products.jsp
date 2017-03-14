@@ -1,6 +1,6 @@
 <%-- 
     Document   : list
-    Created on : Mar 10, 2017, 11:59:01 AM
+    Created on : Feb 19, 2017, 8:29:25 PM
     Author     : VISALI V
 --%>
 
@@ -15,7 +15,7 @@
     <body>
         <div class="col-sm-12">
             <div class="col-sm-12">
-                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=customer" enctype="multipart/form-data">
+                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=production&type=2" enctype="multipart/form-data">
                     <div class="input-group pull-left col-sm-offset-6 col-sm-6">
                         <input type="file" name="file" class="form-control" placeholder="Upload File">
                     </div>
@@ -24,29 +24,29 @@
                 <table id="datatable" class="dataTable display">
                     <thead>
                         <tr>
-                            <td>Items</td>
-                            <td>Country</td>
-                            <td>Units</td>
-                            <td>Quantity</td>
-                            <td>Value</td>
+                            <td>Article Code</td>
+                            <td>Category</td>
+                            <td>Sub-Category</td>
+                            <td>Price(Rs)</td>
+                            <td>Quantity(Kg)</td>
                             <td>Year</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${majorList}" var="major">
+                        <c:forEach items="${prodList}" var="prod">
                             <tr>
-                                <td><c:out value="${major.items}"/></td>
-                                <td><c:out value="${major.country}"/></td>
-                                 <td><c:out value="${major.units}"/></td>
-                                <td><c:out value="${major.quantity}"/></td>
-                                <td><c:out value="${major.value}"/></td>
-                                <td><c:out value="${major.year}"/></td>
+                                <td><c:out value="${prod.articleCode}"/></td>
+                                <td><c:out value="${prod.category}"/></td>
+                                <td><c:out value="${prod.subCategory}"/></td>
+                                <td><c:out value="${prod.value}"/></td>
+                                <td><c:out value="${prod.quantity}"/></td>
+                                <td><c:out value="${prod.year}"/></td>
                                 <td>
-                                    <a href="<%=request.getContextPath()%>/admin/major/edit?id=${major.id}">
+                                    <a href="<%=request.getContextPath()%>/admin/major/edit?id=${prod.id}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="<%=request.getContextPath()%>/admin/major/delete?id=${major.id}"
+                                    <a href="<%=request.getContextPath()%>/admin/major/delete?id=${prod.id}"
                                        onclick="return confirm('Are you sure you want to delete this item?')";>
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 
@@ -66,4 +66,3 @@
 
     </body>
 </html>
-

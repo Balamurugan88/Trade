@@ -9,20 +9,21 @@ import com.clri.dao.MajorCustomersDAO;
 import com.clri.dao.MajorProductionsDAO;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomUtils;
-import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Balamurugan
  */
-@WebServlet(name = "DashboardServlet", urlPatterns = {"/admin/dashboard"})
-public class DashboardServlet extends HttpServlet {
+@WebServlet(name = "ImportServlet", urlPatterns = {"/admin/import/*"})
+public class ImportServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +36,29 @@ public class DashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int type=CommonConstants.IMPORT;
-        MajorCustomersDAO majorCustomerDAO = new MajorCustomersDAO();
-       String customerList = new Gson().toJson(majorCustomerDAO.getList(type) );
-       request.setAttribute("customerList",customerList);
-         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
-       String productionList = new Gson().toJson(majorProductionsDAO.getList(type) );
-       request.setAttribute("productionList",productionList);
-       CustomUtils.setPathName(CommonConstants.DASHABOARD_PAGE, request);
-       CustomUtils.forward(CommonConstants.DASHBOARD_JSP, request, response);
+        String path = CustomUtils.getUrl(request);
+        MajorCustomersDAO majorCustomersDAO = new MajorCustomersDAO();
+        MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
+        String url="";
+        String jsp="";
+        HttpSession session = request.getSession();
+        if (session.getAttribute("uploadCount") != null) {
+            String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
+            CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
+            session.setAttribute("uploadCount", null);
+        }
+        if(path.equals(CommonConstants.IMPORT_CUSTOMER)){
+            jsp = CommonConstants.IMPORT_CUSTOMER_JSP;
+            url = CommonConstants.IMPORT_CUSTOMER;
+            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.IMPORT));
+        }else{
+            jsp = CommonConstants.IMPORT_PRODUCTION_JSP;
+            url = CommonConstants.IMPORT_PRODUCTION;
+            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.IMPORT));
+
+        }
+        CustomUtils.setPathName(url, request);
+        CustomUtils.forward(jsp, request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

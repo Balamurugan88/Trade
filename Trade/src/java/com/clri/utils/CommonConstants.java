@@ -15,6 +15,8 @@ public class CommonConstants {
     public static final String CUSTOMER = "customer";
     public static final String SUCCESS_MSG_CODE = "success";
     public static final String ERROR_MSG_CODE = "danger";
+    public static final int IMPORT=1;
+    public static final int EXPORT=2;
 
     public static final String CATEGORY_LIST = "/admin/category/list";
     public static final String CATEGORY_SAVE_UPDATE = "/admin/category/saveUpdate";
@@ -58,10 +60,12 @@ public class CommonConstants {
     //upload type
     public static final String CUSTOMER_UPLOAD="customer";
     public static final String PRODUCTION_UPLOAD="production";
-    public static Object MAJOR_PRODUCTIONILP_DELETE;
-    public static Object MAJOR_PRODUCTIONILP_EDIT;
-    public static String MAJOR_PRODUCTIONILP_LIST;
-    public static String MAJOR_PRODUCTIONILP_LIST_JSP;
+    
+    public static final String IMPORT_CUSTOMER="/admin/import/customers";
+    public static final String IMPORT_PRODUCTION="/admin/import/prod";
+    public static final String IMPORT_CUSTOMER_JSP="/WEB-INF/views/imports/customers.jsp";
+    public static final String IMPORT_PRODUCTION_JSP="/WEB-INF/views/imports/products.jsp";
+   
    
 
 }

@@ -31,13 +31,13 @@ public class MajorCustomersDAO {
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_MAJOR_CUST");
             count = run.update(connection, sql, majorcustomers.getItems(),majorcustomers.getArticleCode(),
-                    majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear());
+                    majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear(),majorcustomers.getType());
         } catch (SQLException e) {
         }
         return count;
     }
 
-    public List<MajorCustomers> getList() {
+    public List<MajorCustomers> getList(int type) {
         List<MajorCustomers> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
@@ -47,7 +47,7 @@ public class MajorCustomersDAO {
 
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
-            majorList = run.query(connecton, sql, resultSetHandler);
+            majorList = run.query(connecton, sql, resultSetHandler,type);
         } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);

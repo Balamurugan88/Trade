@@ -15,7 +15,7 @@
     <body>
         <div class="col-sm-12">
             <div class="col-sm-12">
-                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=customer" enctype="multipart/form-data">
+                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=customer&type=2" enctype="multipart/form-data">
                     <div class="input-group pull-left col-sm-offset-6 col-sm-6">
                         <input type="file" name="file" class="form-control" placeholder="Upload File">
                     </div>

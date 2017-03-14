@@ -28,7 +28,7 @@ var createChart = function (options) {
                options.items === value[options.itemKey] ) {
             var dataObj = {};
             dataObj[options.xName] = value[options.xKey];
-            dataObj[options.yName] = value[options.yKey];
+            dataObj[options.yName] = Number(value[options.yKey]);
             dataProvider.push(dataObj);
         }
     });

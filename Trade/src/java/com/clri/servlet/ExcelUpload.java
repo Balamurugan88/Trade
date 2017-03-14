@@ -44,9 +44,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUpload extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String TMP_DIR_PATH = "D:/MyTempFiles";
+    private static final String TMP_DIR_PATH = "F:/MyTempFiles";
     private File tmpDir;
-    private static final String DESTINATION_DIR_PATH = "D:/MySavedFiles";
+    private static final String DESTINATION_DIR_PATH = "F:/MySavedFiles";
     private File destinationDir;
 
     public ExcelUpload() {
@@ -96,6 +96,8 @@ public class ExcelUpload extends HttpServlet {
         File file = null;
         HttpSession session = request.getSession();
         String uploadType = request.getParameter("uploadType");
+        String typeString = request.getParameter("type");
+        int type=Integer.parseInt(typeString);
 
         try {
 
@@ -126,7 +128,7 @@ public class ExcelUpload extends HttpServlet {
             int count = 0;
             String extension = FilenameUtils.getExtension(fullName);
             if (extension.trim().equalsIgnoreCase("xlsx")) {
-                count = processExcelFile(file, uploadType);
+                count = processExcelFile(file, uploadType,type);
                 session.setAttribute("uploadCount", count);
 
             } else if (extension.trim().equalsIgnoreCase("xls")) {
@@ -135,10 +137,18 @@ public class ExcelUpload extends HttpServlet {
             if (extension.trim().equalsIgnoreCase("csv")) {
                 //process your CSV file
             }
+            if(type == CommonConstants.IMPORT){
+               if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
+                CustomUtils.redirect(CommonConstants.IMPORT_CUSTOMER, request, response);
+            } else {
+                CustomUtils.redirect(CommonConstants.IMPORT_PRODUCTION, request, response);
+            } 
+            }else{
             if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
                 CustomUtils.redirect(CommonConstants.MAJOR_CUST_LIST, request, response);
             } else {
                 CustomUtils.redirect(CommonConstants.MAJOR_PROD_LIST, request, response);
+            }
             }
 
         } catch (FileUploadException ex) {
@@ -148,7 +158,7 @@ public class ExcelUpload extends HttpServlet {
         }
     }
 
-    private int processExcelFile(File file, String uploadType) {
+    private int processExcelFile(File file, String uploadType,int type) {
 
         int count = 0;
         Connection connection = null;
@@ -157,7 +167,8 @@ public class ExcelUpload extends HttpServlet {
         DataBaseConnection dbcon = new DataBaseConnection();
         MajorProductions majorProductions = new MajorProductions();
         MajorCustomers majorCustomers = new MajorCustomers();
-        MajorCustomerilp majorCustomerilp = new MajorCustomerilp();
+        majorCustomers.setType(type);
+        majorProductions.setType(type);
         try {
             connection = dbcon.openConnection();
             // Creating Input Stream 

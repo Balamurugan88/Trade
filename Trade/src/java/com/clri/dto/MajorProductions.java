@@ -76,5 +76,14 @@ public class MajorProductions {
     public Double quantity;
     public Double value;
     public String year;
+    public int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
     
 }

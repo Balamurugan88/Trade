@@ -30,13 +30,14 @@ public class MajorProductionsDAO {
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_MAJOR_PROD");
             count = run.update(connection, sql, majorProductions.getArticleCode(),majorProductions.getCategory(),
-                    majorProductions.getSubCategory(),majorProductions.getQuantity(), majorProductions.getValue(), majorProductions.getYear());
+                    majorProductions.getSubCategory(),majorProductions.getQuantity(), majorProductions.getValue(),
+                    majorProductions.getYear(),majorProductions.getType());
         } catch (SQLException e) {
         }
         return count;
     }
 
-    public List<MajorProductions> getList() {
+    public List<MajorProductions> getList(int type) {
         List<MajorProductions> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
@@ -46,7 +47,7 @@ public class MajorProductionsDAO {
 
             ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
             QueryRunner run = new QueryRunner();
-            majorList = run.query(connecton, sql, resultSetHandler);
+            majorList = run.query(connecton, sql, resultSetHandler,type);
         } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
