@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             session.setAttribute("user", user);
             if (user.getUserType() == 1) {
-                url = CommonConstants.CATEGORY_LIST;
+                url = CommonConstants.DASHABOARD_PAGE;
             } else {
                 url = CommonConstants.REPORTS_LIST;
             }

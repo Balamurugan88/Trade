@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <nav id="menu">
     <ul>
+        <li><a href="<%=request.getContextPath()%>/admin/dashboard">Dashboard</a></li>
         <li><a href="<%=request.getContextPath()%>/admin/category/list">Category List</a></li>
         <li><a href="<%=request.getContextPath()%>/admin/customer/list">Customer List </a></li>
         <li>
