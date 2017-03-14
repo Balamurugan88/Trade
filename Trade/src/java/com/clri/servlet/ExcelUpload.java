@@ -9,7 +9,6 @@ import com.clri.dao.MajorCustomersDAO;
 import com.clri.dao.MajorProductionsDAO;
 import com.clri.dbutils.DBUtils;
 import com.clri.dbutils.DataBaseConnection;
-import com.clri.dto.MajorCustomerilp;
 import com.clri.dto.MajorCustomers;
 import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
