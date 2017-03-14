@@ -35,13 +35,17 @@ public class DashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int type=CommonConstants.IMPORT;
-        MajorCustomersDAO majorCustomerDAO = new MajorCustomersDAO();
-       String customerList = new Gson().toJson(majorCustomerDAO.getList(type) );
-       request.setAttribute("customerList",customerList);
-         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
-       String productionList = new Gson().toJson(majorProductionsDAO.getList(type) );
-       request.setAttribute("productionList",productionList);
+       MajorCustomersDAO majorCustomerDAO = new MajorCustomersDAO();
+       String importCustomerList = new Gson().toJson(majorCustomerDAO.getList(CommonConstants.IMPORT) );
+       request.setAttribute("importCustomerList",importCustomerList);
+       MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
+       String importProductionList = new Gson().toJson(majorProductionsDAO.getList(CommonConstants.IMPORT) );
+       request.setAttribute("importProductionList",importProductionList);
+       //Export Details
+       String exportCustomerList = new Gson().toJson(majorCustomerDAO.getList(CommonConstants.EXPORT) );
+       request.setAttribute("exportCustomerList",exportCustomerList);
+       String exportProductionList = new Gson().toJson(majorProductionsDAO.getList(CommonConstants.EXPORT) );
+       request.setAttribute("exportProductionList",exportProductionList);
        CustomUtils.setPathName(CommonConstants.DASHABOARD_PAGE, request);
        CustomUtils.forward(CommonConstants.DASHBOARD_JSP, request, response);
     }

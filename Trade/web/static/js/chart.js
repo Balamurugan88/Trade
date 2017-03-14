@@ -6,6 +6,10 @@
 var createDropDown = function (list, value) {
     var $container = $("#" + value.container);
     $container.html("");
+    $container.append($('<option>', {
+            value: "-1",
+            text: "Please Select"
+        }));
     $.each(list, function (index, value) {
         $container.append($('<option>', {
             value: value,
@@ -32,6 +36,7 @@ var createChart = function (options) {
             dataProvider.push(dataObj);
         }
     });
+    options.container = options.container.replace("-","");
     var chart = AmCharts.makeChart(options.container, {
         "theme": "light",
         "type": "serial",

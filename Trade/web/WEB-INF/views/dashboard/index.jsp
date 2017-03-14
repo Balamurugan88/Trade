@@ -9,7 +9,7 @@
 <html>
     <head>
         <style type="text/css">
-            #chartdiv,#proddiv {
+            .chart {
                 width: 100%;
                 height: 400px;
             }
@@ -24,106 +24,134 @@
     <body>
         <!-- HTML -->
         <div class="row">
+            <div class="h4">Imports</div>
             <div class="col-sm-6">
                 <div class="heading h4 text-center">Customer</div>
                 <div class="col-sm-4">
                     <label>Year</label>
-                    <select onchange="createCustomerChart(1)" id="year"></select>
+                    <select onchange="createCustomerChart(1,true)" id="import-year"></select>
                 </div>
                 <div class="col-sm-4">
                     <label>Items</label>
-                    <select onchange="createCustomerChart(1)" id="items"></select>
+                    <select onchange="createCustomerChart(1,true)" id="import-items"></select>
                 </div>
-                <div id="chartdiv"></div>
+                <div id="importchartdiv" class="chart"></div>
             </div>
             <div class="col-sm-6">
                 <div class="heading h4 text-center">Production</div>
-                 <div class="col-sm-4">
+                <div class="col-sm-4">
                     <label>Year</label>
-                    <select onchange="createProdChart(1)" id="prodYear"></select>
+                    <select onchange="createProdChart(1,true)" id="import-prodYear"></select>
                 </div>
                 <div class="col-sm-4">
                     <label>Items</label>
-                    <select onchange="createProdChart(1)" id="prodItems"></select>
+                    <select onchange="createProdChart(1,true)" id="import-prodItems"></select>
                 </div>
-                <div id="proddiv"></div>
+                <div id="importproddiv" class="chart"></div>
             </div>
         </div>
         <div class="row">
+            <div class="h4">Exports</div>
             <div class="col-sm-6">
-
+                <div class="heading h4 text-center">Customer</div>
+                <div class="col-sm-4">
+                    <label>Year</label>
+                    <select onchange="createCustomerChart(2,true)" id="export-year"></select>
+                </div>
+                <div class="col-sm-4">
+                    <label>Items</label>
+                    <select onchange="createCustomerChart(2,true)" id="export-items"></select>
+                </div>
+                <div id="exportchartdiv" class="chart"></div>
             </div>
-            <div class="col-sm-6"></div>
-        </div>
-        <!-- Chart code -->
+            <div class="col-sm-6">
+                <div class="heading h4 text-center">Production</div>
+                <div class="col-sm-4">
+                    <label>Year</label>
+                    <select onchange="createProdChart(2,true)" id="export-prodYear"></select>
+                </div>
+                <div class="col-sm-4">
+                    <label>Items</label>
+                    <select onchange="createProdChart(2,true)" id="export-prodItems"></select>
+                </div>
+                <div id="exportproddiv" class="chart"></div>
+            </div>
+        </div>        <!-- Chart code -->
         <script type="text/javascript">
-            function createCustomerChart(type) {
-                var year = $("#year").val();
-                var items =$("#items").val();
-                var customerList = '<%=request.getAttribute("customerList")%>';
+            function createCustomerChart(type,isDropDown) {
+                var $type= type===1?'import-':'export-';
+                var year = $("#"+$type+"year").val();
+                var items = $("#"+$type+"items").val();
+                if(year !== "-1" && items !== '-1'){
+                if(type===1){
+                  var customerList = '<%=request.getAttribute("importCustomerList")%>';  
+                }else{
+                  var customerList = '<%=request.getAttribute("exportCustomerList")%>';   
+                }
+                
                 customerList = JSON.parse(customerList);
-                if ($.trim(year) === '') {
-                    year = customerList[0].year;
-                }
-                 if ($.trim(items) === '') {
-                    items = customerList[0].items;
-                }
+                
                 var options = {
                     list: customerList,
                     xKey: "country",
                     yKey: "value",
                     xName: "country",
                     yName: "visits",
-                    container: "chartdiv",
+                    container: $type+"chartdiv",
                     filter: "year",
-                    year :year,
-                    items:items,
-                    itemKey :"items",
+                    year: year,
+                    items: items,
+                    itemKey: "items",
                     dropdown: [
-                        {"container": "year", "key": "year"},
-                        {"container": "items", "key": "items"}
+                        {"container": $type+"year", "key": "year"},
+                        {"container": $type+"items", "key": "items"}
                     ]
                 };
-                if(type === 1){
-                    options.createDropDown =false;
+                if (isDropDown) {
+                    options.createDropDown = false;
                 }
                 createChart(options);
+                }
             }
-            function createProdChart(type) {
-                var year = $("#prodYear").val();
-                var items =$("#prodItems").val();
-                var productionList = '<%=request.getAttribute("productionList")%>';
+            function createProdChart(type,isDropDown) {
+                 var $type= type===1?'import-':'export-';
+                var year = $("#"+$type+"prodYear").val();
+                var items = $("#"+$type+"prodItems").val();
+                if(year !== '-1' && items !== '-1'){
+                if(type === 1){
+                var productionList = '<%=request.getAttribute("importProductionList")%>';
+            }else{
+                var productionList = '<%=request.getAttribute("exportProductionList")%>';
+            }
                 productionList = JSON.parse(productionList);
-                if ($.trim(year) === '') {
-                    year = productionList[0].year;
-                }
-                 if ($.trim(items) === '') {
-                    items = productionList[0].items;
-                }
+                
                 var options = {
                     list: productionList,
                     xKey: "category",
                     yKey: "value",
                     xName: "category",
                     yName: "visits",
-                    container: "proddiv",
+                    container: $type+"proddiv",
                     filter: "year",
-                    year :year,
-                    items:items,
-                    itemKey :"articleCode",
+                    year: year,
+                    items: items,
+                    itemKey: "articleCode",
                     dropdown: [
-                        {"container": "prodYear", "key": "year"},
-                        {"container": "prodItems", "key": "articleCode"}
+                        {"container": $type+"prodYear", "key": "year"},
+                        {"container": $type+"prodItems", "key": "articleCode"}
                     ]
                 };
-                if(type === 1){
-                    options.createDropDown =false;
+                if (isDropDown) {
+                    options.createDropDown = false;
                 }
                 createChart(options);
+                }
             }
             $(document).ready(function () {
-                createCustomerChart();
-                createProdChart();
+                createCustomerChart(1,false);
+                createProdChart(1,false);
+                createCustomerChart(2,false);
+                createProdChart(2,false);
 
             });
         </script>
