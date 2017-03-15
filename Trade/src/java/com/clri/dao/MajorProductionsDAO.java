@@ -37,7 +37,7 @@ public class MajorProductionsDAO {
         return count;
     }
 
-    public List<MajorProductions> getList(int type,category) {
+    public List<MajorProductions> getList(int type,int category) {
         List<MajorProductions> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
@@ -48,6 +48,24 @@ public class MajorProductionsDAO {
             ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
             QueryRunner run = new QueryRunner();
             majorList = run.query(connecton, sql, resultSetHandler,type,category);
+        } catch (SQLException e) {
+        } finally {
+            DBUtils.closeConnection(connecton);
+        }
+        return majorList;
+    }
+    
+    public List<MajorProductions> getList(int type) {
+        List<MajorProductions> majorList = new ArrayList<>();
+        Connection connecton = null;
+        try {
+            DataBaseConnection dbcon = new DataBaseConnection();
+            connecton = dbcon.openConnection();
+            String sql = Queries.getQuery("MAJOR_PROD_LIST");
+
+            ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
+            QueryRunner run = new QueryRunner();
+            majorList = run.query(connecton, sql, resultSetHandler,type);
         } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
@@ -112,17 +130,5 @@ public class MajorProductionsDAO {
         }
         return majorProductions;
     }
-
-    public int addUpdateRaw(com.clri.servlet.MajorProductionsServlet majorProductions) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getList(int IMPORT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    
 
 }

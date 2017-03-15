@@ -24,7 +24,6 @@ import javax.servlet.http.HttpSession;
  */
 public class MajorProductionsServlet extends HttpServlet {
 
-    private Object majorList;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

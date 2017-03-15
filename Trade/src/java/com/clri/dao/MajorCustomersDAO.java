@@ -36,8 +36,25 @@ public class MajorCustomersDAO {
         }
         return count;
     }
+     public List<MajorCustomers> getList(int type) {
+        List<MajorCustomers> majorList = new ArrayList<>();
+        Connection connecton = null;
+        try {
+            DataBaseConnection dbcon = new DataBaseConnection();
+            connecton = dbcon.openConnection();
+            String sql = Queries.getQuery("MAJOR_CUST_LIST");
 
-    public List<MajorCustomers> getList(int type,category) {
+            ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
+            QueryRunner run = new QueryRunner();
+            majorList = run.query(connecton, sql, resultSetHandler,type);
+        } catch (SQLException e) {
+        } finally {
+            DBUtils.closeConnection(connecton);
+        }
+        return majorList;
+    }
+     
+    public List<MajorCustomers> getList(int type,int category) {
         List<MajorCustomers> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
@@ -112,9 +129,7 @@ public class MajorCustomersDAO {
         return majorCustomers;
     }
 
-    public List<MajorCustomers> getList(int EXPORT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }
 
