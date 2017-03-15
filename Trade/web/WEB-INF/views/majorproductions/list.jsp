@@ -17,7 +17,7 @@
         <div class="col-sm-12">
             <div class="col-sm-12">
                 <%if (CustomUtils.isAdmin(request)) {%>
-                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=production&type=2" enctype="multipart/form-data">
+                <form method="post" action="<%=request.getContextPath()%>/admin/ExcelUpload?uploadType=production&type=1" enctype="multipart/form-data">
                     <div class="input-group pull-left col-sm-offset-6 col-sm-6">
                         <input type="file" name="file" class="form-control" placeholder="Upload File">
                     </div>
@@ -29,8 +29,8 @@
                         <tr>
                             <td>Article Code</td>
                             <td>Items</td>
-                            <td>Price(Rs)</td>
-                            <td>Quantity(Kg)</td>
+                            <td>Quantity</td>
+                            <td>Value</td>
                             <td>Year</td>
                             <%if (CustomUtils.isAdmin(request)) {%>
                             <td>Action</td>
@@ -41,7 +41,7 @@
                         <c:forEach items="${majorList}" var="major">
                             <tr>
                                 <td><c:out value="${major.articleCode}"/></td>
-                                <td><c:out value="${major.category}"/></td>
+                                <td><c:out value="${major.items}"/></td>
                                 <td><c:out value="${major.value}"/></td>
                                 <td><c:out value="${major.quantity}"/></td>
                                 <td><c:out value="${major.year}"/></td>

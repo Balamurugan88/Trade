@@ -31,13 +31,13 @@ public class MajorCustomersDAO {
             QueryRunner run = new QueryRunner();
             String sql = Queries.getQuery("INSERT_MAJOR_CUST");
             count = run.update(connection, sql, majorcustomers.getArticleCode(),majorcustomers.getItems(),
-                    majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear(),majorcustomers.getType());
+                    majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear(),majorcustomers.getType(),majorcustomers.getCategory());
         } catch (SQLException e) {
         }
         return count;
     }
 
-    public List<MajorCustomers> getList(int type) {
+    public List<MajorCustomers> getList(int type,category) {
         List<MajorCustomers> majorList = new ArrayList<>();
         Connection connecton = null;
         try {
@@ -47,7 +47,7 @@ public class MajorCustomersDAO {
 
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
-            majorList = run.query(connecton, sql, resultSetHandler,type);
+            majorList = run.query(connecton, sql, resultSetHandler,type,category);
         } catch (SQLException e) {
         } finally {
             DBUtils.closeConnection(connecton);
@@ -84,7 +84,7 @@ public class MajorCustomersDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_RM");
+            String sql = Queries.getQuery("DELETE_MAJOR_CUSTOMERS");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (SQLException e) {
@@ -110,6 +110,10 @@ public class MajorCustomersDAO {
             DBUtils.closeConnection(connecton);
         }
         return majorCustomers;
+    }
+
+    public List<MajorCustomers> getList(int EXPORT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

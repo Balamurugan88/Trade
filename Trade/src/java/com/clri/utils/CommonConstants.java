@@ -17,6 +17,9 @@ public class CommonConstants {
     public static final String ERROR_MSG_CODE = "danger";
     public static final int IMPORT = 1;
     public static final int EXPORT = 2;
+    public static final String RAW_MATERIALS="rm";
+    public static final String FINISHED_LEATHER="fl";
+    public static final String LEATHER_PRODUCTS="lp";
 
     public static final String CATEGORY_LIST = "/admin/category/list";
     public static final String CATEGORY_SAVE_UPDATE = "/admin/category/saveUpdate";
@@ -64,5 +67,10 @@ public class CommonConstants {
     public static final String IMPORT_PRODUCTION = "/import/prod";
     public static final String IMPORT_CUSTOMER_JSP = "/WEB-INF/views/imports/customers.jsp";
     public static final String IMPORT_PRODUCTION_JSP = "/WEB-INF/views/imports/products.jsp";
+  
+    public static final String EXPORT_CUSTOMER = "/export/customers";
+    public static final String EXPORT_PRODUCTION = "/export/prod";
+    public static final String EXPORT_CUSTOMER_JSP = "/WEB-INF/views/exports/customers.jsp";
+    public static final String EXPORT_PRODUCTION_JSP = "/WEB-INF/views/exports/products.jsp";
 
 }

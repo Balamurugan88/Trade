@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.clri.servlet;
 
+import com.clri.dao.MajorCustomersDAO;
 import com.clri.dao.MajorProductionsDAO;
-import com.clri.dto.MajorProductions;
 import com.clri.utils.CommonConstants;
-import com.clri.utils.CustomMessage;
 import com.clri.utils.CustomUtils;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +27,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-public class MajorProductionsServlet extends HttpServlet {
-
-    private Object majorList;
+@WebServlet(name = "ExportServlet", urlPatterns = {"/export/*"})
+public class ExportServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,44 +41,29 @@ public class MajorProductionsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String path = request.getServletPath();
-        int count = 0;
+        String path = CustomUtils.getUrl(request);
+        MajorCustomersDAO majorCustomersDAO = new MajorCustomersDAO();
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
-        MajorProductions majorProductions = new MajorProductions();
+        String url="";
+        String jsp="";
         HttpSession session = request.getSession();
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
             CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
             session.setAttribute("uploadCount", null);
         }
-        if (path.equals(CommonConstants.MAJOR_PROD_DELETE)) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            count = majorProductionsDAO.deleteCategory(id);
-            if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
-            } else {
-                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_SUCCESS"), request);
-            }
-        } else if (path.equals(CommonConstants.MAJOR_PROD_EDIT)) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            majorProductions = majorProductionsDAO.getById(id);
-            request.setAttribute("majorProductions", majorProductions);
-        } else if(path.equals(CommonConstants.MAJOR_PROD_SAVE_UPDATE)){
-            majorProductions.setId(CustomUtils.getId(request, "majorId"));
-            majorProductions.setArticleCode(request.getParameter("articleCode"));
-            majorProductions.setQuantity(Double.parseDouble(request.getParameter("quantity")));
-            count = majorProductionsDAO.addUpdateRaw(majorProductions);
-            if (count == 0) {
-                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_SAVE_ERROR"), request);
-            } else {
-                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("CATEGORY_SAVE_SUCCESS"), request);
-            }
+        if(path.equals(CommonConstants.EXPORT_CUSTOMER)){
+            jsp = CommonConstants.EXPORT_CUSTOMER_JSP;
+            url = (String) CommonConstants.EXPORT_CUSTOMER;
+            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.EXPORT));
+        }else{
+            jsp = CommonConstants.EXPORT_PRODUCTION_JSP;
+            url = CommonConstants.EXPORT_PRODUCTION;
+            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.EXPORT));
+
         }
-        List<MajorProductions> majorList = majorProductionsDAO.getList(CommonConstants.EXPORT);
-        request.setAttribute("majorList", majorList);
-        CustomUtils.setPathName(CommonConstants.MAJOR_PROD_LIST, request);
-        CustomUtils.forward(CommonConstants.MAJOR_PROD_LIST_JSP, request, response);
+        CustomUtils.setPathName(url, request);
+        CustomUtils.forward(jsp, request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

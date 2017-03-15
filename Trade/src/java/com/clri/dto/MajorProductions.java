@@ -70,6 +70,7 @@ public class MajorProductions {
     public Double value;
     public String year;
     public int type;
+    public int category;
 
     public int getType() {
         return type;
@@ -78,6 +79,12 @@ public class MajorProductions {
     public void setType(int type) {
         this.type = type;
     }
-    
+     public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.type = category;
+    }
 }
 

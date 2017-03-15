@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <nav id="menu">
     <ul>
-        <li><a href="<%=request.getContextPath()%>/dashboard">Dashboard</a></li>
+        
         <li><a href="<%=request.getContextPath()%>/admin/category/list">Category List</a></li>
         <li><a href="<%=request.getContextPath()%>/admin/customer/list">Customer List </a></li>
         <li>
@@ -17,8 +17,8 @@
                 <li><a>Finished Leather</a>
                     <ul>
 
-                        <li><a>Major Customers</a></li>
-                        <li><a>Major Production with value and year</a></li>
+                        <li><a href="<%=request.getContextPath()%>/import/customers">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/import/prod">Major Production with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Leather Products</a>
@@ -35,27 +35,29 @@
                 <li><a>Raw Materials</a>
                     <ul>
 
-                        <li><a href="<%=request.getContextPath()%>/majorcustomer/list">Major Customers</a></li>
-                        <li><a href="<%=request.getContextPath()%>/majorproductions/list">Major Production with value and year</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/customers">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/prod">Major Production with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Finished Leather</a>
                     <ul>
 
 
-                        <li><a>Major Customers</a></li>
-                        <li><a>Major Productions with value and year</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/customers">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/prod">Major Productions with value and year</a></li>
                     </ul>
                 </li>
                 <li><a>Leather Products</a>
                     <ul>
 
-                        <li><a href="<%=request.getContextPath()%>/majorcustomerelp/">Major Customers</a></li>
-                        <li><a href="<%=request.getContextPath()%>/majorproductionelp/">Major Production with value and year</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/customers">Major Customers</a></li>
+                        <li><a href="<%=request.getContextPath()%>/export/prod">Major Production with value and year</a></li>
                     </ul>
                 </li>
+               
             </ul>
         </li>
+        <li><a href="<%=request.getContextPath()%>/dashboard">Graphical View</a></li>
     </ul>
 
 
