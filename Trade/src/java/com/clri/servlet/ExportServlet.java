@@ -46,7 +46,11 @@ public class ExportServlet extends HttpServlet {
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         String url="";
         String jsp="";
-        int category = Integer.parseInt(request.getParameter("category"));
+        String categoryString = request.getParameter("category");
+        if(categoryString == null){
+            categoryString = "1";
+        }
+        int category = Integer.parseInt(categoryString);
         HttpSession session = request.getSession();
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";

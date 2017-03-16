@@ -32,6 +32,7 @@ public class CustomUtils {
         String url = ((HttpServletRequest) request).getRequestURL().toString();
         String serverPath = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
         url = url.replace(serverPath, "");
+        url = url.substring(url.lastIndexOf("?") + 1);
         return url;
     }
 

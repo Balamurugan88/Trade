@@ -139,15 +139,15 @@ public class ExcelUpload extends HttpServlet {
             }
             if(type == CommonConstants.IMPORT){
                if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
-                CustomUtils.redirect(CommonConstants.IMPORT_CUSTOMER, request, response);
+                CustomUtils.redirect(CommonConstants.IMPORT_CUSTOMER+"?category"+category, request, response);
             } else {
-                CustomUtils.redirect(CommonConstants.IMPORT_PRODUCTION, request, response);
+                CustomUtils.redirect(CommonConstants.IMPORT_PRODUCTION+"?category"+category, request, response);
             } 
             }else{
             if (CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(uploadType)) {
-                CustomUtils.redirect(CommonConstants.MAJOR_CUST_LIST, request, response);
+                CustomUtils.redirect(CommonConstants.EXPORT_CUSTOMER+"?category"+category, request, response);
             } else {
-                CustomUtils.redirect(CommonConstants.MAJOR_PROD_LIST, request, response);
+                CustomUtils.redirect(CommonConstants.EXPORT_PRODUCTION+"?category"+category, request, response);
             }
             }
 
