@@ -79,12 +79,14 @@ public class MajorProductions {
     public void setType(int type) {
         this.type = type;
     }
-     public int getCategory() {
+
+    public int getCategory() {
         return category;
     }
 
     public void setCategory(int category) {
-        this.type = category;
+        this.category = category;
     }
+    
 }
 
