@@ -28,7 +28,7 @@ public class MajorProductionsDAO {
         int count = 0;
         try {
             QueryRunner run = new QueryRunner();
-            String sql = Queries.getQuery("INSERT_MAJOR_PROD");
+            String sql = Queries.getQuery("INSERT_PROD");
             count = run.update(connection, sql, majorProductions.getArticleCode(),majorProductions.getItems(),
                                                 majorProductions.getQuantity(), majorProductions.getValue(),
                     majorProductions.getYear(),majorProductions.getType(),majorProductions.getCategory());
@@ -43,7 +43,7 @@ public class MajorProductionsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_PROD_LIST");
+            String sql = Queries.getQuery("PROD_LIST");
 
             ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
             QueryRunner run = new QueryRunner();
@@ -61,7 +61,7 @@ public class MajorProductionsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_PROD_LIST");
+            String sql = Queries.getQuery("PROD_LIST_ALL");
 
             ResultSetHandler<List<MajorProductions>> resultSetHandler = new BeanListHandler<>(MajorProductions.class);
             QueryRunner run = new QueryRunner();
@@ -102,7 +102,7 @@ public class MajorProductionsDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_MAJOR_PROD");
+            String sql = Queries.getQuery("DELETE_PROD");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (SQLException e) {

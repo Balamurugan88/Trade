@@ -15,10 +15,6 @@
         <servlet-class>com.clri.servlet.CustomerServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>com.clri.servlet.ProductServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.clri.servlet.LogoutServlet</servlet-class>
     </servlet>
@@ -34,14 +30,12 @@
         <servlet-name>MajorCustomers</servlet-name>
         <servlet-class>com.clri.servlet.MajorCustomersServlet</servlet-class>
     </servlet>
-    
-    
     <servlet>
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>com.clri.servlet.ReportServlet</servlet-class>
     </servlet>
     <!-- Customer Servlet Start -->
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/admin/customer/saveUpdate</url-pattern>
     </servlet-mapping>
@@ -77,7 +71,7 @@
     </servlet-mapping>
     <!-- Category End -->
     <!-- Raw Materials Mapping Start -->
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MajorProductions</servlet-name>
         <url-pattern>/majorproductions/list</url-pattern>
     </servlet-mapping>
@@ -93,7 +87,7 @@
         <servlet-name>MajorProductions</servlet-name>
         <url-pattern>/majorproductions/delete</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MajorCustomers</servlet-name>
         <url-pattern>/majorcustomer/list</url-pattern>
     </servlet-mapping>
@@ -109,18 +103,10 @@
         <servlet-name>MajorCustomers</servlet-name>
         <url-pattern>/majorcustomer/delete</url-pattern>
     </servlet-mapping>
-    
-    
-    
-   
     <!-- Report Mapping End -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginAuthenticate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/product/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
@@ -167,17 +153,14 @@
             <param-value>/static/*,/LoginAuthenticate,/logout,/index.jsp</param-value>
         </init-param>
     </filter>
-     <filter-mapping>
+    <filter-mapping>
         <filter-name> cutomerAuthFilter </filter-name>
         <url-pattern>/reports/*</url-pattern>
     </filter-mapping>
-     <filter-mapping>
+    <filter-mapping>
         <filter-name>adminAuthFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
-    
-   
-   
     <!-- Filter Ending -->
     <session-config>
         <session-timeout>

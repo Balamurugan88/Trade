@@ -5,17 +5,13 @@
 package com.clri.servlet;
 
 import com.clri.dao.CategoryDAO;
-import com.clri.dbutils.DataBaseConnection;
 import com.clri.dto.Category;
 import com.clri.utils.CommonConstants;
 import com.clri.utils.CustomMessage;
 import com.clri.utils.CustomUtils;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -90,7 +86,6 @@ public class CategoryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,7 +103,6 @@ public class CategoryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -46,6 +46,7 @@ public class ExportServlet extends HttpServlet {
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         String url="";
         String jsp="";
+        int category = Integer.parseInt(request.getParameter("category"));
         HttpSession session = request.getSession();
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
@@ -55,12 +56,11 @@ public class ExportServlet extends HttpServlet {
         if(path.equals(CommonConstants.EXPORT_CUSTOMER)){
             jsp = CommonConstants.EXPORT_CUSTOMER_JSP;
             url = (String) CommonConstants.EXPORT_CUSTOMER;
-            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.EXPORT));
+            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.EXPORT,category));
         }else{
             jsp = CommonConstants.EXPORT_PRODUCTION_JSP;
             url = CommonConstants.EXPORT_PRODUCTION;
-            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.EXPORT));
-
+            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.EXPORT,category));
         }
         CustomUtils.setPathName(url, request);
         CustomUtils.forward(jsp, request, response);

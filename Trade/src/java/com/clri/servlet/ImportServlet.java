@@ -40,6 +40,7 @@ public class ImportServlet extends HttpServlet {
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         String url="";
         String jsp="";
+        int category = Integer.parseInt(request.getParameter("category"));
         HttpSession session = request.getSession();
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
@@ -49,11 +50,11 @@ public class ImportServlet extends HttpServlet {
         if(path.equals(CommonConstants.IMPORT_CUSTOMER)){
             jsp = CommonConstants.IMPORT_CUSTOMER_JSP;
             url = CommonConstants.IMPORT_CUSTOMER;
-            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.IMPORT));
+            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.IMPORT,category));
         }else{
             jsp = CommonConstants.IMPORT_PRODUCTION_JSP;
             url = CommonConstants.IMPORT_PRODUCTION;
-            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.IMPORT));
+            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.IMPORT,category));
 
         }
         CustomUtils.setPathName(url, request);

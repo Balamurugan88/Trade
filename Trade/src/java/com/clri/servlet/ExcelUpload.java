@@ -97,6 +97,7 @@ public class ExcelUpload extends HttpServlet {
         String uploadType = request.getParameter("uploadType");
         String typeString = request.getParameter("type");
         int type=Integer.parseInt(typeString);
+        int category = Integer.parseInt(request.getParameter("category"));
 
         try {
 
@@ -127,7 +128,7 @@ public class ExcelUpload extends HttpServlet {
             int count = 0;
             String extension = FilenameUtils.getExtension(fullName);
             if (extension.trim().equalsIgnoreCase("xlsx")) {
-                count = processExcelFile(file, uploadType,type);
+                count = processExcelFile(file, uploadType,type,category);
                 session.setAttribute("uploadCount", count);
 
             } else if (extension.trim().equalsIgnoreCase("xls")) {
@@ -157,7 +158,7 @@ public class ExcelUpload extends HttpServlet {
         }
     }
 
-    private int processExcelFile(File file, String uploadType,int type) {
+    private int processExcelFile(File file, String uploadType,int type,int category) {
 
         int count = 0;
         Connection connection = null;
@@ -168,6 +169,8 @@ public class ExcelUpload extends HttpServlet {
         MajorCustomers majorCustomers = new MajorCustomers();
         majorCustomers.setType(type);
         majorProductions.setType(type);
+        majorProductions.setCategory(category);
+        majorCustomers.setCategory(category);
         try {
             connection = dbcon.openConnection();
             // Creating Input Stream 

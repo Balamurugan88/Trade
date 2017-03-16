@@ -29,7 +29,7 @@ public class MajorCustomersDAO {
         int count = 0;
         try {
             QueryRunner run = new QueryRunner();
-            String sql = Queries.getQuery("INSERT_MAJOR_CUST");
+            String sql = Queries.getQuery("INSERT_CUST");
             count = run.update(connection, sql, majorcustomers.getArticleCode(),majorcustomers.getItems(),
                     majorcustomers.getCountry(),majorcustomers.getQuantity(), majorcustomers.getValue(), majorcustomers.getYear(),majorcustomers.getType(),majorcustomers.getCategory());
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class MajorCustomersDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_CUST_LIST");
+            String sql = Queries.getQuery("CUST_LIST_ALL");
 
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
@@ -60,7 +60,7 @@ public class MajorCustomersDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("MAJOR_CUST_LIST");
+            String sql = Queries.getQuery("CUST_LIST");
 
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
@@ -81,10 +81,10 @@ public class MajorCustomersDAO {
             QueryRunner run = new QueryRunner();
             String sql = "";
             if (majorCustomers.getId() == 0) {
-                sql = Queries.getQuery("INSERT_MAJOR_CUSTOMERS");
+                sql = Queries.getQuery("INSERT_CUSTOMERS");
                 count = run.update(connecton, sql, majorCustomers.getArticleCode());
             } else {
-                sql = Queries.getQuery("UPDATE_MAJOR_CUSTOMERS");
+                sql = Queries.getQuery("UPDATE_CUSTOMERS");
                 count = run.update(connecton, sql, majorCustomers.getValue(), majorCustomers.getQuantity(), majorCustomers.getId());
             }
 
@@ -101,7 +101,7 @@ public class MajorCustomersDAO {
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_MAJOR_CUSTOMERS");
+            String sql = Queries.getQuery("DELETE_CUSTOMERS");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (SQLException e) {
