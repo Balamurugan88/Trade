@@ -17,9 +17,7 @@ public class CommonConstants {
     public static final String ERROR_MSG_CODE = "danger";
     public static final int IMPORT = 1;
     public static final int EXPORT = 2;
-    public static final String RAW_MATERIALS="rm";
-    public static final String FINISHED_LEATHER="fl";
-    public static final String LEATHER_PRODUCTS="lp";
+ 
 
     public static final String CATEGORY_LIST = "/admin/category/list";
     public static final String CATEGORY_SAVE_UPDATE = "/admin/category/saveUpdate";
