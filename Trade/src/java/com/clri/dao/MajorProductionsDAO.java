@@ -96,7 +96,7 @@ public class MajorProductionsDAO {
         return count;
     }
 
-    public int deleteCategory(int id) {
+    public int delete(int id) {
         Connection connecton = null;
         int count = 0;
         try {

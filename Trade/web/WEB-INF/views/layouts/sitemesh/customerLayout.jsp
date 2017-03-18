@@ -34,6 +34,9 @@
     </div>
   </body>
        <script type="text/javascript">
+             var currURL = "<%=request.getAttribute("pathName")%>";
+            //Push the current URL to window history
+            window.history.pushState("object or string", "mapviewer", currURL);
         $(document).ready(function () {
             $('#datatable').DataTable();
             $('nav#menu').mmenu({

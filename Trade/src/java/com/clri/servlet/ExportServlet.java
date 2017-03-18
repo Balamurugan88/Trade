@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-@WebServlet(name = "ExportServlet", urlPatterns = {"/export/*"})
+@WebServlet(name = "ExportServlet", urlPatterns = {"/export/*","/admin/export/delete"})
 public class ExportServlet extends HttpServlet {
 
     /**
@@ -46,24 +46,33 @@ public class ExportServlet extends HttpServlet {
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
         String url="";
         String jsp="";
-        String categoryString = request.getParameter("category");
-        if(categoryString == null){
-            categoryString = "1";
-        }
-        int category = Integer.parseInt(categoryString);
+        String type=request.getParameter("type");
+        int category = CustomUtils.getRequestInt(request, "category", "1");
+         int id = CustomUtils.getRequestInt(request,"id","0");
         HttpSession session = request.getSession();
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
             CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
             session.setAttribute("uploadCount", null);
         }
-        if(path.equals(CommonConstants.EXPORT_CUSTOMER)){
+         if (path.equals(CommonConstants.EXPORT_CUSTOMER)
+                || (path.equals(CommonConstants.EXPORT_CUSTOMER_DELETE)
+                && CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(type))) {
+           
+            if(id != 0){
+               int count= majorCustomersDAO.delete(id);
+               CustomUtils.displayDeleteMesssage(count, request);
+            }
             jsp = CommonConstants.EXPORT_CUSTOMER_JSP;
-            url = (String) CommonConstants.EXPORT_CUSTOMER;
+            url = (String) CommonConstants.EXPORT_CUSTOMER+"?category="+category;
             request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.EXPORT,category));
         }else{
+            if(id != 0){
+               int count= majorCustomersDAO.delete(id);
+               CustomUtils.displayDeleteMesssage(count, request);
+            }
             jsp = CommonConstants.EXPORT_PRODUCTION_JSP;
-            url = CommonConstants.EXPORT_PRODUCTION;
+            url = CommonConstants.EXPORT_PRODUCTION+"?category="+category;
             request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.EXPORT,category));
         }
         CustomUtils.setPathName(url, request);

@@ -62,11 +62,13 @@ public class CommonConstants {
     public static final String PRODUCTION_UPLOAD = "production";
 
     public static final String IMPORT_CUSTOMER = "/import/customers";
+    public static final String IMPORT_CUSTOMER_DELETE="/admin/import/delete";
     public static final String IMPORT_PRODUCTION = "/import/prod";
     public static final String IMPORT_CUSTOMER_JSP = "/WEB-INF/views/imports/customers.jsp";
     public static final String IMPORT_PRODUCTION_JSP = "/WEB-INF/views/imports/products.jsp";
   
     public static final String EXPORT_CUSTOMER = "/export/customers";
+    public static final String EXPORT_CUSTOMER_DELETE="/admin/export/delete";
     public static final String EXPORT_PRODUCTION = "/export/prod";
     public static final String EXPORT_CUSTOMER_JSP = "/WEB-INF/views/exports/customers.jsp";
     public static final String EXPORT_PRODUCTION_JSP = "/WEB-INF/views/exports/products.jsp";

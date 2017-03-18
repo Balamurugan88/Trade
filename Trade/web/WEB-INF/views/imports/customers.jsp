@@ -52,7 +52,7 @@
                                     <a href="<%=request.getContextPath()%>/admin/major/edit?id=${customer.id}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="<%=request.getContextPath()%>/admin/major/delete?id=${customer.id}"
+                                    <a href="<%=request.getContextPath()%>/admin/import/delete?id=${customer.id}&type=customer&category=<%=request.getParameter("category")%>"
                                        onclick="return confirm('Are you sure you want to delete this item?')";>
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 

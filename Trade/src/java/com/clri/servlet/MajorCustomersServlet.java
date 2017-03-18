@@ -48,7 +48,7 @@ public class MajorCustomersServlet extends HttpServlet {
         }
         if (path.equals(CommonConstants.MAJOR_CUST_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            count = majorCustomersDAO.deleteCategory(id);
+            count = majorCustomersDAO.delete(id);
             if (count == 0) {
                 CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
             } else {

@@ -22,6 +22,22 @@ public class CustomUtils {
         request.setAttribute("statusCode", statusCode);
         request.setAttribute("statusMessage", statusMessage);
     }
+    
+    public static int getRequestInt(HttpServletRequest request,String key,String defaultValue){
+        String defaultString = request.getParameter(key);
+        if(defaultString == null){
+            defaultString = defaultValue;
+        }
+       return Integer.parseInt(defaultString);
+    }
+    
+    public static void displayDeleteMesssage(int count,HttpServletRequest request) throws IOException{
+         if (count == 0) {
+                CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
+            } else {
+                CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_SUCCESS"), request);
+            }
+    }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RequestDispatcher rd = request.getRequestDispatcher(url);

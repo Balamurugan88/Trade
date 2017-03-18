@@ -95,13 +95,13 @@ public class MajorCustomersDAO {
         return count;
     }
 
-    public int deleteCategory(int id) {
+    public int delete(int id) {
         Connection connecton = null;
         int count = 0;
         try {
             DataBaseConnection dbcon = new DataBaseConnection();
             connecton = dbcon.openConnection();
-            String sql = Queries.getQuery("DELETE_CUSTOMERS");
+            String sql = Queries.getQuery("DELETE_CUST");
             QueryRunner run = new QueryRunner();
             count = run.update(connecton, sql, id);
         } catch (SQLException e) {

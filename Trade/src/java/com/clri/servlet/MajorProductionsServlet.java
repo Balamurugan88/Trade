@@ -49,7 +49,7 @@ public class MajorProductionsServlet extends HttpServlet {
         }
         if (path.equals(CommonConstants.MAJOR_PROD_DELETE)) {
             int id = Integer.parseInt(request.getParameter("id"));
-            count = majorProductionsDAO.deleteCategory(id);
+            count = majorProductionsDAO.delete(id);
             if (count == 0) {
                 CustomUtils.setStatus(CommonConstants.ERROR_MSG_CODE, CustomMessage.getMessage("COMMON_DELETE_ERROR"), request);
             } else {

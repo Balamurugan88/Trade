@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Balamurugan
  */
-@WebServlet(name = "ImportServlet", urlPatterns = {"/import/*"})
+@WebServlet(name = "ImportServlet", urlPatterns = {"/import/*", "/admin/import/delete"})
 public class ImportServlet extends HttpServlet {
 
     /**
@@ -38,27 +38,36 @@ public class ImportServlet extends HttpServlet {
         String path = CustomUtils.getUrl(request);
         MajorCustomersDAO majorCustomersDAO = new MajorCustomersDAO();
         MajorProductionsDAO majorProductionsDAO = new MajorProductionsDAO();
-        String url="";
-        String jsp="";
-         String categoryString = request.getParameter("category");
-        if(categoryString == null){
-            categoryString = "1";
-        }
-        int category = Integer.parseInt(categoryString);
+        String url = "";
+        String jsp = "";
+
+        int category = CustomUtils.getRequestInt(request, "category", "1");
+        String type = request.getParameter("type");
         HttpSession session = request.getSession();
+        int id = CustomUtils.getRequestInt(request, "id", "0");
         if (session.getAttribute("uploadCount") != null) {
             String message = session.getAttribute("uploadCount").toString() + " rows uploaded";
             CustomUtils.setStatus(CommonConstants.SUCCESS_MSG_CODE, message, request);
             session.setAttribute("uploadCount", null);
         }
-        if(path.equals(CommonConstants.IMPORT_CUSTOMER)){
+        if (path.equals(CommonConstants.IMPORT_CUSTOMER)
+                || (path.equals(CommonConstants.IMPORT_CUSTOMER_DELETE)
+                && CommonConstants.CUSTOMER_UPLOAD.equalsIgnoreCase(type))) {
+            if (id != 0) {
+                int count = majorCustomersDAO.delete(id);
+                CustomUtils.displayDeleteMesssage(count, request);
+            }
             jsp = CommonConstants.IMPORT_CUSTOMER_JSP;
-            url = CommonConstants.IMPORT_CUSTOMER;
-            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.IMPORT,category));
-        }else{
+            url = CommonConstants.IMPORT_CUSTOMER+"?category="+category;
+            request.setAttribute("customerList", majorCustomersDAO.getList(CommonConstants.IMPORT, category));
+        } else {
+            if (id != 0) {
+                int count = majorProductionsDAO.delete(id);
+                CustomUtils.displayDeleteMesssage(count, request);
+            }
             jsp = CommonConstants.IMPORT_PRODUCTION_JSP;
-            url = CommonConstants.IMPORT_PRODUCTION;
-            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.IMPORT,category));
+            url = CommonConstants.IMPORT_PRODUCTION+"?category="+category;
+            request.setAttribute("prodList", majorProductionsDAO.getList(CommonConstants.IMPORT, category));
 
         }
         CustomUtils.setPathName(url, request);
