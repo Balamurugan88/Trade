@@ -14,9 +14,8 @@
             </div>
 
             <div class="col-md-6 text-center  col-sm-6  col-xs-12">
-                <span><a href="#" id="aSitemap" class="a-black-color">Sitemap</a></span>I 
-                <span><a href="#" id="aDisclaimer" class="a-black-color">Disclaimer</a></span>I
-                <span><a href="/contact-us" id="aDisclaimer" class="a-black-color">Contact Us</a></span>
+                <span><a href="#" id="aSitemap" class="a-black-color">About us</a></span>
+                
             </div>
 
         </div>

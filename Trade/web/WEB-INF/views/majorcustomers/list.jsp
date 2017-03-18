@@ -49,9 +49,7 @@
                                 <td><c:out value="${major.year}"/></td>
                                  <%if(CustomUtils.isAdmin(request)){%>
                                 <td>
-                                    <a href="<%=request.getContextPath()%>/admin/major/edit?id=${major.id}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </a>
+                                    
                                     <a href="<%=request.getContextPath()%>/admin/major/delete?id=${major.id}"
                                        onclick="return confirm('Are you sure you want to delete this item?')";>
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
