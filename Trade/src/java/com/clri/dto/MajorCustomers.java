@@ -79,6 +79,15 @@ public class MajorCustomers {
     public String year;
     public int type;
     public int category;
+    public int categoryName;
+
+    public int getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(int categoryName) {
+        this.categoryName = categoryName;
+    }
 
     public int getType() {
         return type;

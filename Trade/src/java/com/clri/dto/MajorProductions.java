@@ -71,6 +71,15 @@ public class MajorProductions {
     public String year;
     public int type;
     public int category;
+    public String categoryName;
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
     public int getType() {
         return type;
