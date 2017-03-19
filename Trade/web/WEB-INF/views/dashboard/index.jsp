@@ -127,7 +127,7 @@
                 
                 var options = {
                     list: productionList,
-                    xKey: "category",
+                    xKey: "items",
                     yKey: "value",
                     xName: "category",
                     yName: "visits",
