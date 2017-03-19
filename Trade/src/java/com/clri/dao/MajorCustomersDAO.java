@@ -47,7 +47,8 @@ public class MajorCustomersDAO {
             ResultSetHandler<List<MajorCustomers>> resultSetHandler = new BeanListHandler<>(MajorCustomers.class);
             QueryRunner run = new QueryRunner();
             majorList = run.query(connecton, sql, resultSetHandler,type);
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             DBUtils.closeConnection(connecton);
         }
