@@ -13,10 +13,7 @@
                 <i class="fa fa-copyright"></i> 2017, <span id="spnCSIR_SLRI">CSIR-CLRI</span>
             </div>
 
-            <div class="col-md-6 text-center  col-sm-6  col-xs-12">
-                <span><a href="#" id="aSitemap" class="a-black-color">About us</a></span>
-                
-            </div>
+            
 
         </div>
 

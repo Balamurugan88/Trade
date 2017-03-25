@@ -44,7 +44,7 @@
                                 <td><c:out value="${customer.items}"/></td>
                                 <td><c:out value="${customer.articleCode}"/></td>
                                 <td><c:out value="${customer.country}"/></td>
-                                <td><c:out value="${customer.quantity}"/></td>
+                                <td><fmt:formatNumber type="number" value="${customer.quantity}"/></td>
                                 <td><c:out value="${customer.value}"/></td>
                                 <td><c:out value="${customer.year}"/></td>
                                  <%if(CustomUtils.isAdmin(request)){%>

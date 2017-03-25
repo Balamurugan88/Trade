@@ -135,10 +135,10 @@
                     filter: "year",
                     year: year,
                     items: items,
-                    itemKey: "articleCode",
+                    itemKey: "categoryName",
                     dropdown: [
                         {"container": $type+"prodYear", "key": "year"},
-                        {"container": $type+"prodItems", "key": "articleCode"}
+                        {"container": $type+"prodItems", "key": "categoryName"}
                     ]
                 };
                 if (isDropDown) {

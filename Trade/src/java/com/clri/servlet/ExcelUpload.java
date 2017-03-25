@@ -210,7 +210,7 @@ public class ExcelUpload extends HttpServlet {
     public MajorProductions getProductions(XSSFRow row, MajorProductions majorProductions) {
         String articleCode = row.getCell(0).getRawValue();
         String items = row.getCell(1).getStringCellValue();
-        double quantity = row.getCell(2).getNumericCellValue();
+        double quantity=row.getCell(2).getNumericCellValue();
         double value = row.getCell(3).getNumericCellValue();
         String year = row.getCell(4).getStringCellValue();
         majorProductions.setItems(items);

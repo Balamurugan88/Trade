@@ -12,7 +12,7 @@ package com.clri.dto;
  */
 public class MajorCustomers {
 
-    public Double getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
