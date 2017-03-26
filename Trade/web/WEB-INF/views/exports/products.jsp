@@ -7,6 +7,7 @@
 <%@page import="com.clri.utils.CustomUtils"%>
 <%@ page language="java" contentType="text/html;" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,8 +43,8 @@
                             <tr>
                                 <td><c:out value="${prod.articleCode}"/></td>
                                 <td><c:out value="${prod.items}"/></td>
-                                <td><c:out value="${prod.value}"/></td>
-                                <td><c:out value="${prod.quantity}"/></td>
+                                <td><fmt:formatNumber type="number" value="${prod.value}"/></td>
+                                <td><fmt:formatNumber type="number" value="${prod.quantity}"/></td>
                                 <td><c:out value="${prod.year}"/></td>
                                  <%if(CustomUtils.isAdmin(request)){%>
                                 <td>
